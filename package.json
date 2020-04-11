@@ -7,17 +7,19 @@
   "author": "Bowei Han",
   "license": "ISC",
   "scripts": {
-    "clean": "rm dist/bundle.js",
-    "build-dev": "webpack -d --mode development",
-    "build-prod": "webpack -p --mode production",
+    "clean": "rm -rf ./dist",
+    "build-dev": "npm run clean && webpack -d --mode development",
+    "build-prod": "npm run clean && webpack -p --mode production",
     "start": "webpack-dev-server --hot --mode development"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-hot-loader": "^4.12.20",
+    "ace-builds": "^1.4.9",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "react": "^16.13.1",
+    "react-ace": "^8.1.0",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.20"
   },
   "devDependencies": {
     "webpack": "^4.42.1",
@@ -31,7 +33,6 @@
     "@hot-loader/react-dom": "^16.13.0+4.12.20",
     "webpack-dev-server": "^3.10.3",
     "html-webpack-plugin": "^4.2.0",
-    "html-webpack-template": "^6.2.0",
     "typescript": "^3.8.3",
     "awesome-typescript-loader": "^5.2.1",
     "css-loader": "^3.5.2",

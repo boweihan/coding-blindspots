@@ -1,15 +1,13 @@
-import * as React from 'react'
-import { hot } from 'react-hot-loader/root'
+import * as React from 'react';
+import { hot } from 'react-hot-loader/root';
+import Ace from './Ace';
 
-interface Props {
-  name: string
-}
+interface Props {}
 
 class App extends React.Component<Props> {
   render() {
-    const { name } = this.props
-    return <div>Hello {name}</div>
+    return <Ace />;
   }
 }
 
-export default hot(App)
+export default hot(App);

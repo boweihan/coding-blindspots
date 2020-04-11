@@ -1,7 +1,8 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-import App from './App'
+import App from './App';
 
-var mountNode = document.getElementById('app')
-ReactDOM.render(<App name="Bowei" />, mountNode)
+var mountNode = document.getElementById('app');
+console.log('hi');
+ReactDOM.render(<App />, mountNode);

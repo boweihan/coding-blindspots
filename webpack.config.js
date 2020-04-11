@@ -1,10 +1,10 @@
-const webpack = require('webpack')
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+  .BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
   entry: ['react-hot-loader/patch', './src/index.tsx'],
@@ -51,10 +51,24 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: require('html-webpack-template'),
-      inject: false,
-      appMountId: 'app',
+      title: 'Coding Interview Feedback',
       filename: 'index.html',
+      inject: true,
+      templateContent: ({ htmlWebpackPlugin }) => `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Coding Interview Feedback</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            ${htmlWebpackPlugin.tags.headTags}
+          </head>
+          <body>
+            <div id="app"></div>
+            ${htmlWebpackPlugin.tags.bodyTags}
+          </body>
+        </html>
+      `,
     }),
     new LodashModuleReplacementPlugin(),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
@@ -76,13 +90,13 @@ const config = {
       },
     },
   },
-}
+};
 
 module.exports = (env, argv) => {
   if (argv.hot) {
     // Cannot use 'contenthash' when hot reloading is enabled.
-    config.output.filename = '[name].[hash].js'
+    config.output.filename = '[name].[hash].js';
   }
 
-  return config
-}
+  return config;
+};
