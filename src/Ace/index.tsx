@@ -1,27 +1,26 @@
-import * as React from 'react';
+import React, { useState, useContext } from 'react';
 import AceEditor from 'react-ace';
+import { store } from '../store';
 
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/theme-github';
 
-interface Props {}
+const Ace = () => {
+  const [text, setText] = useState('');
 
-class Ace extends React.Component<Props> {
-  onChange(newValue: string) {
-    console.log('change', newValue);
-  }
+  const globalState = useContext(store);
+  console.log(globalState);
 
-  render() {
-    return (
-      <AceEditor
-        mode="java"
-        theme="github"
-        onChange={this.onChange}
-        name="ace-editor"
-        editorProps={{ $blockScrolling: true }}
-      />
-    );
-  }
-}
+  return (
+    <AceEditor
+      value={text}
+      mode="java"
+      theme="github"
+      onChange={setText}
+      name="ace-editor"
+      editorProps={{ $blockScrolling: true }}
+    />
+  );
+};
 
 export default Ace;
