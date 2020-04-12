@@ -3,6 +3,7 @@
 interface CssExports {
   'container': string;
   'heading': string;
+  'secondaryHeading': string;
   'submit': string;
   'tooltip': string;
 }
