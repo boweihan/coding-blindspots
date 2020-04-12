@@ -11,3 +11,9 @@
 .tooltip {
   margin-left: 10px;
 }
+
+.submit {
+  text-align: right;
+  margin-top: 12px;
+  width: 100%;
+}

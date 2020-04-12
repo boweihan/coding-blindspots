@@ -3,6 +3,7 @@
 interface CssExports {
   'container': string;
   'heading': string;
+  'submit': string;
   'tooltip': string;
 }
 export const cssExports: CssExports;

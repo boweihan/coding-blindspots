@@ -1,7 +1,5 @@
-import React, { useState, useContext } from 'react';
-import AceEditor from 'react-ace';
+import Editor from './Editor';
 import EditorOptions from './EditorOptions';
-import { store } from '../store';
 
 // Language Support
 import 'ace-builds/src-noconflict/mode-c_cpp';
@@ -18,7 +16,7 @@ import 'ace-builds/src-noconflict/mode-php';
 
 import 'ace-builds/src-noconflict/theme-tomorrow';
 
-export enum Language {
+enum Language {
   CPP = 'c_cpp',
   JAVA = 'java',
   PYTHON = 'python',
@@ -32,33 +30,5 @@ export enum Language {
   PHP = 'php',
 }
 
-interface Props {
-  readOnly?: boolean;
-}
-
-const Ace = ({ readOnly = false }: Props) => {
-  const [text, setText] = useState('');
-  const [language, setLanguage] = useState<Language>(Language.CPP);
-
-  // const globalState = useContext(store);
-  // console.log(globalState);
-
-  return (
-    <div>
-      <EditorOptions language={language} setLanguage={setLanguage} />
-      <AceEditor
-        value={text}
-        mode={language}
-        theme="tomorrow"
-        onChange={setText}
-        name="ace"
-        editorProps={{ $blockScrolling: true }}
-        width="inherit"
-        wrapEnabled
-        readOnly={readOnly}
-      />
-    </div>
-  );
-};
-
-export default Ace;
+export { Language, Editor, EditorOptions };
+export default { Editor, EditorOptions, Language };
