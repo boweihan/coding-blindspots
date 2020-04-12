@@ -27,21 +27,39 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
+          'css-modules-typescript-loader',
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
               modules: true,
+              importLoaders: 1,
             },
           },
           'postcss-loader',
+        ],
+        exclude: /\.module\.css$/,
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: {
+                'layout-header-height': '48px',
+              },
+              javascriptEnabled: true,
+            },
+          },
         ],
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.tsx', '.ts'],
+    extensions: ['.js', '.jsx', '.tsx', '.ts', '.css'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },
