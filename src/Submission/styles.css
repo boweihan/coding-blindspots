@@ -1,0 +1,13 @@
+.container {
+  background: #fff;
+  margin: 24px;
+  padding: 24px;
+}
+
+.heading {
+  font-size: 20px;
+}
+
+.tooltip {
+  margin-left: 10px;
+}
