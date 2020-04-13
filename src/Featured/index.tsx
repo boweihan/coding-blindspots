@@ -24,7 +24,7 @@ const Submission = () => {
         dataSource={snippets}
         renderItem={(snippet) => (
           <List.Item>
-            <Card title={snippet.title}>
+            <Card title={snippet.title || 'Snippet'}>
               Language: {snippet.language} {snippet.text}
             </Card>
           </List.Item>

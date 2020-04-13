@@ -33,7 +33,7 @@ const StateProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer((state: any, action: any) => {
     switch (action.type) {
       case 'SAVE_SNIPPET':
-        const { id, title = 'Snippet', text, language } = action.payload;
+        const { id, title, text, language } = action.payload;
         const snippet: Snippet = {
           id,
           title,
