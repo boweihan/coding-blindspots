@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
-import { Tooltip, Button } from 'antd';
+import { Tooltip, Button, Input } from 'antd';
 import { QuestionCircleTwoTone } from '@ant-design/icons';
 import { Editor, EditorOptions, Language } from '../Ace';
 import { store } from '../store';
 import styles from './styles.css';
 import 'antd/es/Button/style';
+import 'antd/es/Input/style';
 
 const Submission = () => {
   const context = useContext(store);
   const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
   const [language, setLanguage] = useState<Language>(Language.JAVASCRIPT);
 
   return (
@@ -29,6 +31,11 @@ const Submission = () => {
           <EditorOptions language={language} setLanguage={setLanguage} />
           <Editor text={text} language={language} onChange={setText} editable />
           <div className={styles.submit}>
+            <Input
+              className={styles.title}
+              onChange={(title) => setTitle(title.currentTarget.value)}
+              placeholder="Snippet Title"
+            />
             <Button
               type="primary"
               onClick={() =>
@@ -36,6 +43,7 @@ const Submission = () => {
                   type: 'SAVE_SNIPPET',
                   payload: {
                     id: new Date().getTime(),
+                    title,
                     text,
                     language,
                   },

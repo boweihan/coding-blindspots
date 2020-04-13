@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import { some } from 'lodash';
 import { Snippet } from './types';
+import { Language } from './Ace';
 
 interface State {
   snippets: Array<Snippet>;
@@ -12,7 +13,14 @@ interface Context {
 }
 
 const initialState = {
-  snippets: [],
+  snippets: [
+    {
+      id: '1',
+      title: 'Recursive Fibbonaci',
+      text: 'bloop',
+      language: Language.JAVA,
+    },
+  ],
 };
 const initialContext = {
   dispatch: () => {},
@@ -25,9 +33,10 @@ const StateProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer((state: any, action: any) => {
     switch (action.type) {
       case 'SAVE_SNIPPET':
-        const { id, text, language } = action.payload;
+        const { id, title = 'Snippet', text, language } = action.payload;
         const snippet: Snippet = {
           id,
+          title,
           text,
           language,
         };

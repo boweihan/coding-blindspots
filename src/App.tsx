@@ -8,6 +8,7 @@ import 'antd/es/Layout/style';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 import Submission from './Submission';
+import Featured from './Featured';
 import styles from './styles.css';
 const { Header, Content, Footer } = Layout;
 
@@ -24,7 +25,9 @@ const App = () => {
               <Route path="/create">
                 <Submission />
               </Route>
-              <Route path="/public">Featured Snippets</Route>
+              <Route path="/public">
+                <Featured />
+              </Route>
               <Route path="/">
                 <Submission />
               </Route>
