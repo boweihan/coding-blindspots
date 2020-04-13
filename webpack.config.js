@@ -69,7 +69,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Coding Interview Feedback',
+      title: 'Coding Blindspots',
       filename: 'index.html',
       inject: true,
       templateContent: ({ htmlWebpackPlugin }) => `
@@ -77,7 +77,7 @@ const config = {
         <html>
           <head>
             <meta charset="utf-8">
-            <title>Coding Interview Feedback</title>
+            <title>Coding Blindspots</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             ${htmlWebpackPlugin.tags.headTags}
           </head>

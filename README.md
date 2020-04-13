@@ -1,4 +1,4 @@
-# coding-interview-feedback
+# coding-blindspots
 
 Front-end for customized code feedback
 

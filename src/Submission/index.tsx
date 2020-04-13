@@ -16,9 +16,9 @@ const Submission = () => {
           Submit Question and Code
           <Tooltip
             title="
-          In order for us to give you feedback on your code, please ensure that you submit the complete
-          question along with your solution. Submissions with inadequate context will be ignored.
-          "
+            In order for us to give you feedback on your code, please ensure that you submit the complete
+            question along with your solution. Submissions with inadequate context will be ignored.
+            "
           >
             <QuestionCircleTwoTone className={styles.tooltip} />
           </Tooltip>
