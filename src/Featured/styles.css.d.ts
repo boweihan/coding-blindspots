@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'container': string;
+  'snippet': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

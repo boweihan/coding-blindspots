@@ -72,7 +72,7 @@ const Submission = () => {
                 handleSubmission({
                   id: String(new Date().getTime()),
                   title,
-                  text,
+                  text: JSON.stringify(text),
                   language,
                 })
               }

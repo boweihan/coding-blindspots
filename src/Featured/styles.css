@@ -2,3 +2,7 @@
   margin: 24px;
   padding: 24px;
 }
+
+.snippet {
+  white-space: pre-wrap;
+}

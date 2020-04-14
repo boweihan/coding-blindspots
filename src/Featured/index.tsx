@@ -5,6 +5,16 @@ import styles from './styles.css';
 import 'antd/es/List/style';
 import 'antd/es/Card/style';
 
+// hacky but works for now
+function isJson(str: string) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
 const Submission = () => {
   const context = useContext(store);
   const {
@@ -25,7 +35,10 @@ const Submission = () => {
         renderItem={(snippet) => (
           <List.Item>
             <Card title={snippet.title || 'Snippet'}>
-              Language: {snippet.language} {snippet.text}
+              Language: {snippet.language}
+              <div className={styles.snippet}>
+                {isJson(snippet.text) ? JSON.parse(snippet.text) : snippet.text}
+              </div>
             </Card>
           </List.Item>
         )}
