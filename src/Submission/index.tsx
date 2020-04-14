@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Tooltip, Button, Input, Modal, message } from 'antd';
 import { QuestionCircleTwoTone } from '@ant-design/icons';
-import { Editor, EditorOptions, Language } from '../Ace';
+import { Editor, EditorOptions, Language } from '../Editor';
 import { store } from '../store';
 import { Snippet } from '../types';
 import styles from './styles.css';
@@ -63,7 +63,14 @@ const Submission = () => {
             setLanguage={setLanguage}
             enabled
           />
-          <Editor text={text} language={language} onChange={setText} editable />
+          <Editor
+            text={text}
+            language={language}
+            onChange={(editor: any, data: any, value: string) => {
+              setText(value);
+            }}
+            editable
+          />
           <div className={styles.submit}>
             <Input
               className={styles.title}

@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import { some } from 'lodash';
 import { Snippet } from './types';
-import { Language } from './Ace';
+import { Language } from './Editor';
 
 interface State {
   snippets: Array<Snippet>;

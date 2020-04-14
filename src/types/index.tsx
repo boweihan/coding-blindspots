@@ -1,4 +1,4 @@
-import { Language } from '../Ace';
+import { Language } from '../Editor';
 
 export type Snippet = {
   id: string;

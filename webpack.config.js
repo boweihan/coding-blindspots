@@ -25,6 +25,13 @@ const config = {
         exclude: /node_modules/,
       },
       {
+        test: [
+          path.resolve(__dirname, 'node_modules/codemirror/lib/codemirror.css'),
+          path.resolve(__dirname, 'node_modules/codemirror/theme/material.css'),
+        ],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+      {
         test: /\.css$/,
         use: [
           'style-loader',
@@ -38,7 +45,10 @@ const config = {
           },
           'postcss-loader',
         ],
-        exclude: /\.module\.css$/,
+        exclude: [
+          path.resolve(__dirname, 'node_modules/codemirror/lib/codemirror.css'),
+          path.resolve(__dirname, 'node_modules/codemirror/theme/material.css'),
+        ],
       },
       {
         test: /\.less$/,

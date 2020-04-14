@@ -12,15 +12,12 @@ interface Props {
 }
 
 const languageToText = {
-  c_cpp: 'C++',
-  java: 'Java',
+  clike: 'Java',
   python: 'Python',
-  csharp: 'C#',
   javascript: 'JavaScript',
   ruby: 'Ruby',
   swift: 'Swift',
-  golang: 'Go',
-  scala: 'Scala',
+  go: 'Go',
   rust: 'Rust',
   php: 'PHP',
 };
