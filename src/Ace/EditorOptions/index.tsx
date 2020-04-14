@@ -7,7 +7,8 @@ const { Option } = Select;
 
 interface Props {
   language: Language;
-  setLanguage: (value: Language) => void;
+  setLanguage?: (value: Language) => void;
+  enabled?: boolean;
 }
 
 const languageToText = {
@@ -24,12 +25,13 @@ const languageToText = {
   php: 'PHP',
 };
 
-const EditorOptions = ({ language, setLanguage }: Props) => (
+const EditorOptions = ({ language, setLanguage, enabled }: Props) => (
   <div className={styles.container}>
     <Select
       defaultValue={language}
       style={{ width: 120 }}
       onChange={setLanguage}
+      disabled={!enabled}
     >
       {Object.values(Language).map((lang) => (
         <Option key={lang} value={lang}>

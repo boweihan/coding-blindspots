@@ -5,13 +5,15 @@ import { Language } from '../';
 interface Props {
   text: string;
   language: Language;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   editable?: boolean;
+  setRef?: (ref: any) => void;
 }
 
-const Ace = ({ text, language, onChange, editable }: Props) => {
+const Ace = ({ text, language, onChange, editable, setRef }: Props) => {
   return (
     <AceEditor
+      ref={setRef}
       value={text}
       mode={language}
       theme="tomorrow"

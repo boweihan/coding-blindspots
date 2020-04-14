@@ -2,6 +2,11 @@
 // Please do not change this file!
 interface CssExports {
   'container': string;
+  'heading': string;
+  'secondaryHeading': string;
+  'submit': string;
+  'title': string;
+  'tooltip': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

@@ -58,7 +58,11 @@ const Submission = () => {
           </Tooltip>
         </h2>
         <div>
-          <EditorOptions language={language} setLanguage={setLanguage} />
+          <EditorOptions
+            language={language}
+            setLanguage={setLanguage}
+            enabled
+          />
           <Editor text={text} language={language} onChange={setText} editable />
           <div className={styles.submit}>
             <Input
