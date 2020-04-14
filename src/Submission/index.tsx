@@ -1,17 +1,47 @@
 import React, { useState, useContext } from 'react';
-import { Tooltip, Button, Input } from 'antd';
+import { Tooltip, Button, Input, Modal, message } from 'antd';
 import { QuestionCircleTwoTone } from '@ant-design/icons';
 import { Editor, EditorOptions, Language } from '../Ace';
 import { store } from '../store';
+import { Snippet } from '../types';
 import styles from './styles.css';
 import 'antd/es/Button/style';
 import 'antd/es/Input/style';
+import 'antd/es/Modal/style';
+import 'antd/es/message/style';
 
 const Submission = () => {
   const context = useContext(store);
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
   const [language, setLanguage] = useState<Language>(Language.JAVASCRIPT);
+
+  const handleSubmission = (payload: Snippet): void => {
+    const { title, text } = payload;
+    if (!title || !text) {
+      if (!title && !text) {
+        message.error('Snippet / Title must not be empty!');
+        return;
+      }
+      if (!title) {
+        message.error('Title must not be empty!');
+      }
+      if (!text) {
+        message.error('Snippet must not be empty!');
+      }
+      return;
+    }
+
+    context.dispatch({
+      type: 'SAVE_SNIPPET',
+      payload,
+    });
+    Modal.success({
+      title: 'Submission Success',
+      content:
+        'Thank you for submitting your snippet. We are currently reviewing your submission and will post feedback when it is available.',
+    });
+  };
 
   return (
     <>
@@ -39,14 +69,11 @@ const Submission = () => {
             <Button
               type="primary"
               onClick={() =>
-                context.dispatch({
-                  type: 'SAVE_SNIPPET',
-                  payload: {
-                    id: new Date().getTime(),
-                    title,
-                    text,
-                    language,
-                  },
+                handleSubmission({
+                  id: String(new Date().getTime()),
+                  title,
+                  text,
+                  language,
                 })
               }
             >
