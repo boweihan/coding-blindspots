@@ -9,6 +9,8 @@ import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 import Submission from './Submission';
 import Featured from './Featured';
+import Review from './Review';
+import View from './View';
 import styles from './styles.css';
 const { Header, Content, Footer } = Layout;
 
@@ -22,15 +24,11 @@ const App = () => {
           </Header>
           <Content>
             <Switch>
-              <Route path="/create">
-                <Submission />
-              </Route>
-              <Route path="/public">
-                <Featured />
-              </Route>
-              <Route path="/">
-                <Submission />
-              </Route>
+              <Route path="/create" component={Submission} />
+              <Route path="/public" component={Featured} />
+              <Route path="/review" component={Review} />
+              <Route path="/view" component={View} />
+              <Route path="/" component={Submission} />
             </Switch>
           </Content>
           <Footer>

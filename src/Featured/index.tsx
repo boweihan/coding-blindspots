@@ -1,22 +1,23 @@
 import React, { useContext } from 'react';
 import { List, Card, Button } from 'antd';
+import { Link } from 'react-router-dom';
 import { store } from '../store';
 import styles from './styles.css';
 import 'antd/es/List/style';
 import 'antd/es/Card/style';
 import 'antd/es/Button/style';
 
-// hacky but works for now
-function isJson(str: string) {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
-}
+// // hacky but works for now
+// function isJson(str: string) {
+//   try {
+//     JSON.parse(str);
+//   } catch (e) {
+//     return false;
+//   }
+//   return true;
+// }
 
-const Submission = () => {
+const Featured = () => {
   const context = useContext(store);
   const {
     state: { snippets },
@@ -38,8 +39,24 @@ const Submission = () => {
             <Card
               title={snippet.title || 'Snippet'}
               actions={[
-                <Button onClick={() => {}}>View</Button>,
-                <Button onClick={() => {}}>Review</Button>,
+                <Link
+                  to={{
+                    pathname: '/view',
+                    hash: `#${snippet.id}`,
+                    state: { snippet },
+                  }}
+                >
+                  <Button>View</Button>
+                </Link>,
+                <Link
+                  to={{
+                    pathname: '/review',
+                    hash: `#${snippet.id}`,
+                    state: { snippet },
+                  }}
+                >
+                  <Button>Review</Button>
+                </Link>,
               ]}
             >
               Language: {snippet.language}
@@ -50,9 +67,8 @@ const Submission = () => {
           </List.Item>
         )}
       />
-      ,
     </div>
   );
 };
 
-export default Submission;
+export default Featured;
