@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { List, Card } from 'antd';
+import { List, Card, Button } from 'antd';
 import { store } from '../store';
 import styles from './styles.css';
 import 'antd/es/List/style';
 import 'antd/es/Card/style';
+import 'antd/es/Button/style';
 
 // hacky but works for now
 function isJson(str: string) {
@@ -34,11 +35,17 @@ const Submission = () => {
         dataSource={snippets}
         renderItem={(snippet) => (
           <List.Item>
-            <Card title={snippet.title || 'Snippet'}>
+            <Card
+              title={snippet.title || 'Snippet'}
+              actions={[
+                <Button onClick={() => {}}>View</Button>,
+                <Button onClick={() => {}}>Review</Button>,
+              ]}
+            >
               Language: {snippet.language}
-              <div className={styles.snippet}>
+              {/* <div className={styles.snippet}>
                 {isJson(snippet.text) ? JSON.parse(snippet.text) : snippet.text}
-              </div>
+              </div> */}
             </Card>
           </List.Item>
         )}
