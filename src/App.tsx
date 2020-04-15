@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import classNames from 'classnames';
 import { StateProvider } from './store';
 import { Layout } from 'antd';
-import 'antd/es/Layout/style';
+import 'antd/es/layout/style';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 import Submission from './Submission';

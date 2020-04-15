@@ -5,9 +5,9 @@ import { Editor, EditorOptions, Language } from '../Editor';
 import { store } from '../store';
 import { Snippet } from '../types';
 import styles from './styles.css';
-import 'antd/es/Button/style';
-import 'antd/es/Input/style';
-import 'antd/es/Modal/style';
+import 'antd/es/button/style';
+import 'antd/es/input/style';
+import 'antd/es/modal/style';
 import 'antd/es/message/style';
 
 const Submission = () => {
@@ -85,6 +85,7 @@ const Submission = () => {
                   title,
                   text: JSON.stringify(text),
                   language,
+                  comments: [],
                 })
               }
             >

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PlusOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import styles from './styles.css';
-import 'antd/es/Menu/style';
+import 'antd/es/menu/style';
 
 const AppHeader = () => (
   <>

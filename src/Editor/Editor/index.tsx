@@ -10,6 +10,7 @@ interface Props {
   language: Language;
   onChange?: any;
   onKeyDown?: any;
+  onMount?: any;
   editable?: boolean;
   setRef?: (ref: any) => void;
 }
@@ -19,6 +20,7 @@ const Editor = ({
   language,
   onChange = () => {},
   onKeyDown = () => {},
+  onMount = () => {},
   editable = true,
   setRef = () => {},
 }: Props) => {
@@ -29,6 +31,7 @@ const Editor = ({
         value={text}
         onBeforeChange={onChange}
         onCursor={onKeyDown}
+        editorDidMount={onMount}
         options={{
           readOnly: !editable,
           mode: language,

@@ -3,9 +3,9 @@ import { List, Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { store } from '../store';
 import styles from './styles.css';
-import 'antd/es/List/style';
-import 'antd/es/Card/style';
-import 'antd/es/Button/style';
+import 'antd/es/list/style';
+import 'antd/es/card/style';
+import 'antd/es/button/style';
 
 // // hacky but works for now
 // function isJson(str: string) {
@@ -52,7 +52,7 @@ const Featured = () => {
                   to={{
                     pathname: '/review',
                     hash: `#${snippet.id}`,
-                    state: { snippet },
+                    state: { snippetId: snippet.id },
                   }}
                 >
                   <Button>Review</Button>

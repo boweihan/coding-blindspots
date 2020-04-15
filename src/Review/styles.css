@@ -28,13 +28,23 @@
 }
 
 .widgetContainer {
-  margin-left: 12px;
-  margin-right: 12px;
   padding: 6px;
-  border: 1px solid #f2f2f2;
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+  max-width: 80vw;
 }
 
 .widgetButtons {
   text-align: right;
   margin: 6px;
+}
+
+.commentContainer {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+:global(.comment__textarea) {
+  border: 1px solid #ff9999;
+  width: 100%;
 }

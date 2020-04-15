@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { List, Card, Button } from 'antd';
 import { Snippet } from '../types';
 import styles from './styles.css';
-import 'antd/es/List/style';
-import 'antd/es/Card/style';
-import 'antd/es/Button/style';
+import 'antd/es/list/style';
+import 'antd/es/card/style';
+import 'antd/es/button/style';
 
 interface ViewProps {
   location: {
