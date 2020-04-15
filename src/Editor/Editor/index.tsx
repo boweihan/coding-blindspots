@@ -9,17 +9,26 @@ interface Props {
   text: string;
   language: Language;
   onChange?: any;
+  onKeyDown?: any;
   editable?: boolean;
   setRef?: (ref: any) => void;
 }
 
-const Editor = ({ text, language, onChange, editable, setRef }: Props) => {
+const Editor = ({
+  text,
+  language,
+  onChange = () => {},
+  onKeyDown = () => {},
+  editable = true,
+  setRef = () => {},
+}: Props) => {
   return (
     <div className={style.container}>
       <CodeMirror
         ref={setRef}
         value={text}
         onBeforeChange={onChange}
+        onCursor={onKeyDown}
         options={{
           readOnly: !editable,
           mode: language,

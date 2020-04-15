@@ -26,3 +26,15 @@
 .title {
   width: 150px !important;
 }
+
+.widgetContainer {
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 6px;
+  border: 1px solid #f2f2f2;
+}
+
+.widgetButtons {
+  text-align: right;
+  margin: 6px;
+}

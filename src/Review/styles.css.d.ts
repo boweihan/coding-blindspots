@@ -7,6 +7,8 @@ interface CssExports {
   'submit': string;
   'title': string;
   'tooltip': string;
+  'widgetButtons': string;
+  'widgetContainer': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

@@ -16,9 +16,11 @@ const initialState = {
   snippets: [
     {
       id: '1',
-      title: 'Recursive Fibbonaci',
-      text: 'bloop',
-      language: Language.JAVA,
+      title: 'Typescript Interface',
+      text: JSON.stringify(
+        'interface ReviewProps {\n  location: {\n    state: {\n      snippet: Snippet;\n    };\n  };\n}'
+      ),
+      language: Language.JAVASCRIPT,
     },
   ],
 };
