@@ -1,2 +1,23 @@
 .container {
+  background: #fff;
+  margin: 24px;
+  padding: 24px;
+}
+
+.heading {
+  font-size: 20px;
+}
+
+.tooltip {
+  margin-left: 10px;
+}
+
+.commentContainer {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+:global(.comment__textarea) {
+  border: 1px solid #ff9999;
+  width: 100%;
 }

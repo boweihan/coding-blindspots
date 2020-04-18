@@ -4,10 +4,7 @@ interface CssExports {
   'commentContainer': string;
   'container': string;
   'heading': string;
-  'secondaryHeading': string;
   'submit': string;
-  'title': string;
-  'tooltip': string;
   'widgetButtons': string;
   'widgetContainer': string;
 }

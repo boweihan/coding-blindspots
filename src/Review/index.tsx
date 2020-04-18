@@ -92,7 +92,6 @@ const Review = ({ location: { state } }: ReviewProps) => {
   };
 
   const addInputLineWidget = (cm: any, event: any) => {
-    console.log(cm);
     removeInputWidgets(cm);
     const line = event.line;
     widgets.push(

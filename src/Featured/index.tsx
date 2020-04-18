@@ -43,7 +43,7 @@ const Featured = () => {
                   to={{
                     pathname: '/view',
                     hash: `#${snippet.id}`,
-                    state: { snippet },
+                    state: { snippetId: snippet.id },
                   }}
                 >
                   <Button>View</Button>
