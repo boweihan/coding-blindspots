@@ -1,6 +1,10 @@
 .logo {
   margin: 0;
-  width: 80px;
+  width: 200px;
   color: white;
   float: left;
+}
+
+.smallIconLink {
+  width: 15px;
 }
