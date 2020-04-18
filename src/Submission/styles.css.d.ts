@@ -3,6 +3,8 @@
 interface CssExports {
   'container': string;
   'heading': string;
+  'infographic': string;
+  'infographicContainer': string;
   'secondaryHeading': string;
   'submit': string;
   'title': string;

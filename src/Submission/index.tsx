@@ -9,6 +9,8 @@ import 'antd/es/button/style';
 import 'antd/es/input/style';
 import 'antd/es/modal/style';
 import 'antd/es/message/style';
+// @ts-ignore
+import Infographic from '../assets/infographic.png';
 
 const Submission = () => {
   const context = useContext(store);
@@ -99,6 +101,13 @@ const Submission = () => {
         <p>Please login to view previous submissions.</p>
         <Button type="primary">Login</Button>&nbsp;
         <Button type="default">Signup</Button>
+      </div>
+      <div className={styles.infographicContainer}>
+        <img
+          className={styles.infographic}
+          src={Infographic}
+          alt="CodingBlindspots infographic"
+        />
       </div>
     </>
   );

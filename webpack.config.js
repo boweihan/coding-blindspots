@@ -25,6 +25,14 @@ const config = {
         exclude: /node_modules/,
       },
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+      {
         test: [
           path.resolve(__dirname, 'node_modules/codemirror/lib/codemirror.css'),
           path.resolve(__dirname, 'node_modules/codemirror/theme/material.css'),

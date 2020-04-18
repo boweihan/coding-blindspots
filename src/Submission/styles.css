@@ -4,6 +4,30 @@
   padding: 24px;
 }
 
+.infographicContainer {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+@media screen and (min-width: 961px) {
+  .infographicContainer {
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 960px) {
+  .infographicContainer {
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+}
+
+.infographic {
+  width: 100%;
+  opacity: 0.8;
+}
+
 .heading {
   font-size: 20px;
 }
