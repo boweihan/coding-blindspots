@@ -2,3 +2,16 @@
   min-height: 100vh;
   margin: 10px;
 }
+
+:global(.react-codemirror2) {
+  height: 100%;
+}
+
+:global(.CodeMirror) {
+  height: 100%;
+}
+
+:global(.comment__textarea) {
+  border: 1px solid #ff9999;
+  width: 100%;
+}

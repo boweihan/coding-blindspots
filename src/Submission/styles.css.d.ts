@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'container': string;
+  'editor': string;
   'heading': string;
   'infographic': string;
   'infographicContainer': string;

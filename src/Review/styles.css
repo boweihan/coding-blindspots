@@ -30,8 +30,3 @@
   margin-left: 6px;
   margin-right: 6px;
 }
-
-:global(.comment__textarea) {
-  border: 1px solid #ff9999;
-  width: 100%;
-}

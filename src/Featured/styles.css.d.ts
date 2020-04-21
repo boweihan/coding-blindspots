@@ -3,6 +3,7 @@
 interface CssExports {
   'container': string;
   'snippet': string;
+  'snippetContainer': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

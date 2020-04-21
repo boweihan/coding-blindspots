@@ -65,14 +65,16 @@ const Submission = () => {
             setLanguage={setLanguage}
             enabled
           />
-          <Editor
-            text={text}
-            language={language}
-            onChange={(editor: any, data: any, value: string) => {
-              setText(value);
-            }}
-            editable
-          />
+          <div className={styles.editor}>
+            <Editor
+              text={text}
+              language={language}
+              onChange={(editor: any, data: any, value: string) => {
+                setText(value);
+              }}
+              editable
+            />
+          </div>
           <div className={styles.submit}>
             <Input
               className={styles.title}

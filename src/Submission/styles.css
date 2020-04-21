@@ -4,6 +4,11 @@
   padding: 24px;
 }
 
+.editor {
+  min-height: 500px;
+  height: 500px;
+}
+
 .infographicContainer {
   margin-left: 24px;
   margin-right: 24px;
