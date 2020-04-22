@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { findIndex } from 'lodash';
-import { Input, Button, message } from 'antd';
+import { Button, message } from 'antd';
 import ReactMDE from 'react-mde';
 import * as Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
@@ -10,11 +10,8 @@ import { store } from '../store';
 import { Editor, EditorOptions } from '../Editor';
 import { Comment } from '../types';
 import styles from './styles.css';
-import 'antd/es/input/style';
 import 'antd/es/button/style';
 import 'antd/es/modal/style';
-
-const { TextArea } = Input;
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -142,13 +139,15 @@ const Review = ({ location: { state } }: ReviewProps) => {
       <h2 className={styles.heading}>Submit Question and Code</h2>
       <div>
         <EditorOptions language={language} />
-        <Editor
-          key={JSON.stringify(comments)}
-          text={JSON.parse(text)}
-          language={language}
-          onKeyDown={addInputLineWidget}
-          onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)} // setTimeout required to avoid JS Execution race condition with CodeMirror
-        />
+        <div className={styles.editor}>
+          <Editor
+            key={JSON.stringify(comments)}
+            text={JSON.parse(text)}
+            language={language}
+            onKeyDown={addInputLineWidget}
+            onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)} // setTimeout required to avoid JS Execution race condition with CodeMirror
+          />
+        </div>
         <div className={styles.submit}>
           <Button type="primary" onClick={() => {}}>
             Submit Review

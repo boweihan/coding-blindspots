@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { findIndex } from 'lodash';
 import ReactMDE from 'react-mde';
+import { CheckCircleTwoTone } from '@ant-design/icons';
+import { Spin } from 'antd';
 import * as Showdown from 'showdown';
 import { store } from '../store';
 import { Editor, EditorOptions } from '../Editor';
 import { Comment } from '../types';
 import styles from './styles.css';
-import 'antd/es/input/style';
-import 'antd/es/button/style';
-import 'antd/es/modal/style';
+import 'antd/es/spin/style';
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -34,7 +34,7 @@ const View = ({ location: { state } }: ViewProps) => {
     state: { snippets },
   } = context;
 
-  const { language, text, comments } = snippets[
+  const { title, language, text, comments } = snippets[
     findIndex(snippets, { id: snippetId })
   ];
 
@@ -69,15 +69,30 @@ const View = ({ location: { state } }: ViewProps) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>View Feedback</h2>
+      {!comments ||
+        (comments.length <= 0 ? (
+          <div className={styles.statusContainer}>
+            <Spin size="small" />
+            <span className={styles.loadingText}>pending review</span>
+          </div>
+        ) : (
+          <div className={styles.statusContainer}>
+            <CheckCircleTwoTone twoToneColor="#52c41a" />
+            <span className={styles.successText}>review complete</span>
+          </div>
+        ))}
+      <h2 className={styles.heading}>{title}</h2>
+      <p>Public Snippet</p>
       <div>
         <EditorOptions language={language} />
-        <Editor
-          key={JSON.stringify(comments)}
-          text={JSON.parse(text)}
-          language={language}
-          onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)} // setTimeout required to avoid JS Execution race condition with CodeMirror
-        />
+        <div className={styles.editor}>
+          <Editor
+            key={JSON.stringify(comments)}
+            text={JSON.parse(text)}
+            language={language}
+            onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)} // setTimeout required to avoid JS Execution race condition with CodeMirror
+          />
+        </div>
       </div>
     </div>
   );

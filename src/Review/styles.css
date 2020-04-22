@@ -30,3 +30,8 @@
   margin-left: 6px;
   margin-right: 6px;
 }
+
+.editor {
+  min-height: 70vh;
+  height: 70vh;
+}

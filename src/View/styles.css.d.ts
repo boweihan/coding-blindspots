@@ -3,7 +3,11 @@
 interface CssExports {
   'commentContainer': string;
   'container': string;
+  'editor': string;
   'heading': string;
+  'loadingText': string;
+  'statusContainer': string;
+  'successText': string;
   'tooltip': string;
 }
 export const cssExports: CssExports;

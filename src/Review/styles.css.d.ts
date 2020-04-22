@@ -3,6 +3,7 @@
 interface CssExports {
   'commentContainer': string;
   'container': string;
+  'editor': string;
   'heading': string;
   'submit': string;
   'widgetButtons': string;

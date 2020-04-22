@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Tooltip, Button, Input, Modal, message } from 'antd';
 import { QuestionCircleTwoTone } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 import { Editor, EditorOptions, Language } from '../Editor';
 import { store } from '../store';
 import { Snippet } from '../types';
@@ -12,14 +13,20 @@ import 'antd/es/message/style';
 // @ts-ignore
 import Infographic from '../assets/infographic.png';
 
-const Submission = () => {
+interface SubmissionProps {
+  history: {
+    push: Function;
+  };
+}
+
+const Submission = (props: SubmissionProps) => {
   const context = useContext(store);
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
   const [language, setLanguage] = useState<Language>(Language.JAVASCRIPT);
 
   const handleSubmission = (payload: Snippet): void => {
-    const { title, text } = payload;
+    const { id, title, text } = payload;
     if (!title || !text) {
       if (!title && !text) {
         message.error('Snippet / Title must not be empty!');
@@ -40,8 +47,12 @@ const Submission = () => {
     });
     Modal.success({
       title: 'Submission Success',
-      content:
-        'Thank you for submitting your snippet. We are currently reviewing your submission and will post feedback when it is available.',
+      content: (
+        <p>
+          Thank you for submitting your snippet. Your submission ID is {id}. To
+          view your submission, click <a href={`/view#${id}`}>here.</a>
+        </p>
+      ),
     });
   };
 
