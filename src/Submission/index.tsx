@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Tooltip, Button, Input, Modal, message } from 'antd';
 import { QuestionCircleTwoTone } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 import { Editor, EditorOptions, Language } from '../Editor';
 import { store } from '../store';
 import { Snippet } from '../types';
@@ -27,15 +26,16 @@ const Submission = (props: SubmissionProps) => {
 
   const handleSubmission = (payload: Snippet): void => {
     const { id, title, text } = payload;
-    if (!title || !text) {
-      if (!title && !text) {
+    let parsedText = JSON.parse(text);
+    if (!title || !parsedText) {
+      if (!title && !parsedText) {
         message.error('Snippet / Title must not be empty!');
         return;
       }
       if (!title) {
         message.error('Title must not be empty!');
       }
-      if (!text) {
+      if (!parsedText) {
         message.error('Snippet must not be empty!');
       }
       return;
