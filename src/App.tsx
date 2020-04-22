@@ -28,7 +28,7 @@ const App = () => {
               <Route path="/public" component={Featured} />
               <Route path="/review" component={Review} />
               <Route path="/view" component={View} />
-              <Route path="/" component={Submission} />
+              <Route path="*" component={Submission} />
             </Switch>
           </Content>
           <Footer>

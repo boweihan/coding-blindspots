@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { findIndex } from 'lodash';
 import ReactMDE from 'react-mde';
+import { Redirect } from 'react-router-dom';
 import { CheckCircleTwoTone } from '@ant-design/icons';
 import { Spin } from 'antd';
 import * as Showdown from 'showdown';
@@ -20,23 +21,25 @@ const converter = new Showdown.Converter({
 
 interface ViewProps {
   location: {
-    state: {
-      snippetId: string;
-    };
+    hash: string;
   };
 }
 
-const View = ({ location: { state } }: ViewProps) => {
+const View = ({ location }: ViewProps) => {
   const context = useContext(store);
 
-  const { snippetId } = state;
+  const snippetId = location.hash.slice(1);
   const {
     state: { snippets },
   } = context;
 
-  const { title, language, text, comments } = snippets[
-    findIndex(snippets, { id: snippetId })
-  ];
+  const snippet = snippets[findIndex(snippets, { id: snippetId })];
+
+  if (!snippet) {
+    return <Redirect to="/create" />;
+  }
+
+  const { title, language, text, comments } = snippet;
 
   const commentWidget = (comment: Comment) => {
     return (

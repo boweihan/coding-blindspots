@@ -92,6 +92,7 @@ const config = {
   },
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

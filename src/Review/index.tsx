@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { findIndex } from 'lodash';
 import { Button, message } from 'antd';
 import ReactMDE from 'react-mde';
+import { Redirect } from 'react-router-dom';
 import * as Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 
@@ -22,25 +23,27 @@ const converter = new Showdown.Converter({
 
 interface ReviewProps {
   location: {
-    state: {
-      snippetId: string;
-    };
+    hash: string;
   };
 }
 
 const widgets: any = [];
 
-const Review = ({ location: { state } }: ReviewProps) => {
+const Review = ({ location }: ReviewProps) => {
   const context = useContext(store);
 
-  const { snippetId } = state;
+  const snippetId = location.hash.slice(1);
   const {
     state: { snippets },
   } = context;
 
-  const { language, text, comments } = snippets[
-    findIndex(snippets, { id: snippetId })
-  ];
+  const snippet = snippets[findIndex(snippets, { id: snippetId })];
+
+  if (!snippet) {
+    return <Redirect to="/create" />;
+  }
+
+  const { title, language, text, comments } = snippet;
 
   const commentWidget = (comment: Comment) => {
     return (
