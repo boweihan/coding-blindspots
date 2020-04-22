@@ -36,6 +36,10 @@ const config = {
         test: [
           path.resolve(__dirname, 'node_modules/codemirror/lib/codemirror.css'),
           path.resolve(__dirname, 'node_modules/codemirror/theme/material.css'),
+          path.resolve(
+            __dirname,
+            'node_modules/react-mde/lib/styles/css/react-mde-all.css'
+          ),
         ],
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
@@ -56,6 +60,10 @@ const config = {
         exclude: [
           path.resolve(__dirname, 'node_modules/codemirror/lib/codemirror.css'),
           path.resolve(__dirname, 'node_modules/codemirror/theme/material.css'),
+          path.resolve(
+            __dirname,
+            'node_modules/react-mde/lib/styles/css/react-mde-all.css'
+          ),
         ],
       },
       {

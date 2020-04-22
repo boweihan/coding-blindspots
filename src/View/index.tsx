@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { findIndex } from 'lodash';
-import { Input, Button } from 'antd';
+import ReactMDE from 'react-mde';
+import * as Showdown from 'showdown';
 import { store } from '../store';
 import { Editor, EditorOptions } from '../Editor';
 import { Comment } from '../types';
@@ -10,7 +11,12 @@ import 'antd/es/input/style';
 import 'antd/es/button/style';
 import 'antd/es/modal/style';
 
-const { TextArea } = Input;
+const converter = new Showdown.Converter({
+  tables: true,
+  simplifiedAutoLink: true,
+  strikethrough: true,
+  tasklists: true,
+});
 
 interface ViewProps {
   location: {
@@ -32,11 +38,25 @@ const View = ({ location: { state } }: ViewProps) => {
     findIndex(snippets, { id: snippetId })
   ];
 
-  const commentWidget = (comment: Comment) => (
-    <div className={styles.commentContainer}>
-      <TextArea className="comment__textarea" value={comment.text} autoSize />
-    </div>
-  );
+  const commentWidget = (comment: Comment) => {
+    return (
+      <div className={styles.commentContainer}>
+        <ReactMDE
+          className="comment__textarea"
+          value={comment.text}
+          selectedTab={'preview'}
+          readOnly
+          classes={{
+            toolbar: 'comment__toolbar',
+          }}
+          minPreviewHeight={10}
+          generateMarkdownPreview={(markdown) =>
+            Promise.resolve(converter.makeHtml(markdown))
+          }
+        />
+      </div>
+    );
+  };
 
   const createCommentWidgets = (cm: any) => {
     comments?.forEach((comment) =>

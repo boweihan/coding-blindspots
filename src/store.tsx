@@ -25,12 +25,14 @@ const initialState = {
         {
           id: '11',
           line: 1,
-          text: 'this is \nawesome',
+          text: String(
+            "## HTML block below\n\n<blockquote>\n  This blockquote will change based on the HTML settings above.\n</blockquote>\n\n## How about some code?\n```js\nvar React = require('react');\nvar Markdown = require('react-markdown');\n\nReact.render(\n  <Markdown source=\"# Your markdown here\" />,\n  document.getElementById('content')\n);"
+          ),
         },
         {
           id: '11',
           line: 2,
-          text: 'this is great',
+          text: 'This is a **neat** *line* of code!',
         },
       ],
     },

@@ -1,7 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { findIndex } from 'lodash';
 import { Input, Button, message } from 'antd';
+import ReactMDE from 'react-mde';
+import * as Showdown from 'showdown';
+import 'react-mde/lib/styles/css/react-mde-all.css';
+
 import { store } from '../store';
 import { Editor, EditorOptions } from '../Editor';
 import { Comment } from '../types';
@@ -11,6 +15,13 @@ import 'antd/es/button/style';
 import 'antd/es/modal/style';
 
 const { TextArea } = Input;
+
+const converter = new Showdown.Converter({
+  tables: true,
+  simplifiedAutoLink: true,
+  strikethrough: true,
+  tasklists: true,
+});
 
 interface ReviewProps {
   location: {
@@ -34,11 +45,25 @@ const Review = ({ location: { state } }: ReviewProps) => {
     findIndex(snippets, { id: snippetId })
   ];
 
-  const commentWidget = (comment: Comment) => (
-    <div className={styles.commentContainer}>
-      <TextArea className="comment__textarea" value={comment.text} autoSize />
-    </div>
-  );
+  const commentWidget = (comment: Comment) => {
+    return (
+      <div className={styles.commentContainer}>
+        <ReactMDE
+          className="comment__textarea"
+          value={comment.text}
+          selectedTab={'preview'}
+          readOnly
+          classes={{
+            toolbar: 'comment__toolbar',
+          }}
+          minPreviewHeight={10}
+          generateMarkdownPreview={(markdown) =>
+            Promise.resolve(converter.makeHtml(markdown))
+          }
+        />
+      </div>
+    );
+  };
 
   const createCommentWidgets = (cm: any) => {
     comments?.forEach((comment) =>
@@ -64,10 +89,24 @@ const Review = ({ location: { state } }: ReviewProps) => {
     }
   };
 
-  const createInputWidget = (cm: any, line: number) => {
+  const InputWidget = ({ cm, line }: any) => {
+    const [value, setValue] = useState('');
+    const [selectedTab, setSelectedTab] = React.useState<'write' | 'preview'>(
+      'write'
+    );
+
     return (
       <div className={styles.widgetContainer}>
-        <TextArea className="review__textarea" rows={3} />
+        <ReactMDE
+          className="review__textarea"
+          value={value}
+          onChange={setValue}
+          selectedTab={selectedTab}
+          onTabChange={setSelectedTab}
+          generateMarkdownPreview={(markdown) =>
+            Promise.resolve(converter.makeHtml(markdown))
+          }
+        />
         <div className={styles.widgetButtons}>
           <Button type="dashed" onClick={() => removeInputWidgets(cm)}>
             Cancel
@@ -78,8 +117,7 @@ const Review = ({ location: { state } }: ReviewProps) => {
               addComment({
                 id: String(new Date().getTime()),
                 line,
-                text: document.getElementsByClassName('review__textarea')[0]
-                  .innerHTML,
+                text: value,
               });
               message.success('Comment added!');
             }}
@@ -94,15 +132,9 @@ const Review = ({ location: { state } }: ReviewProps) => {
   const addInputLineWidget = (cm: any, event: any) => {
     removeInputWidgets(cm);
     const line = event.line;
-    widgets.push(
-      cm.addLineWidget(
-        line,
-        ReactDOM.render(
-          createInputWidget(cm, line),
-          document.createElement('div')
-        )
-      )
-    );
+    let div = document.createElement('div');
+    ReactDOM.render(<InputWidget cm={cm} line={line} />, div);
+    widgets.push(cm.addLineWidget(line, div));
   };
 
   return (
