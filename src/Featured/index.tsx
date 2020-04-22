@@ -45,7 +45,6 @@ const Featured = () => {
                   to={{
                     pathname: '/review',
                     hash: `#${snippet.id}`,
-                    state: { snippetId: snippet.id },
                   }}
                 >
                   <Button>Review</Button>
@@ -56,7 +55,6 @@ const Featured = () => {
                 to={{
                   pathname: '/view',
                   hash: `#${snippet.id}`,
-                  state: { snippetId: snippet.id },
                 }}
               >
                 <Tooltip title="View Snippet">
