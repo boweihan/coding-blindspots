@@ -139,7 +139,8 @@ const Review = ({ location }: ReviewProps) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Submit Question and Code</h2>
+      <h2 className={styles.heading}>{title}</h2>
+      <p>Review Page</p>
       <div>
         <EditorOptions language={language} />
         <div className={styles.editor}>
@@ -151,11 +152,11 @@ const Review = ({ location }: ReviewProps) => {
             onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)} // setTimeout required to avoid JS Execution race condition with CodeMirror
           />
         </div>
-        <div className={styles.submit}>
+        {/* <div className={styles.submit}>
           <Button type="primary" onClick={() => {}}>
             Submit Review
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
