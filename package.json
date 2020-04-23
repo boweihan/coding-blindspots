@@ -34,6 +34,7 @@
     "react-mde": "^8.3.0",
     "react-media": "^1.10.0",
     "react-router-dom": "^5.1.2",
+    "react-spinners": "^0.8.1",
     "showdown": "^1.9.1"
   },
   "devDependencies": {

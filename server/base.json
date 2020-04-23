@@ -1,24 +1,31 @@
 {
   "snippets": [
     {
-      "id": 1,
+      "id": "1587669572205",
       "title": "First Snippet",
       "text": "interface ReviewProps {\n  location: {\n    state: {\n      snippet: Snippet;\n    };\n  };\n}",
       "language": "javascript"
+    },
+    {
+      "id": "1587669572206",
+      "title": "Javascript Rest Client",
+      "text": "\"import axios from 'axios';\\nimport config from '../config';\\n\\nconst get = (path: string) => {\\n  return axios\\n    .get(`${config.baseUrl}${path}`)\\n    .then((response) => {\\n      return response.data;\\n    })\\n    .catch((error) => {\\n      console.log(error);\\n    });\\n};\\n\\nconst post = (path: string, body: object) => {\\n  return axios\\n    .post(`${config.baseUrl}${path}`, body)\\n    .then((response) => {\\n      return response.data;\\n    })\\n    .catch((error) => {\\n      console.log(error);\\n    });\\n};\\n\\nexport default { get, post };\\n\"",
+      "language": "javascript",
+      "comments": []
     }
   ],
   "comments": [
     {
-      "id": 1,
+      "id": "1",
       "line": 1,
       "text": "## HTML block below\n\n<blockquote>\n  This blockquote will change based on the HTML settings above.\n</blockquote>\n\n## How about some code?\n```js\nvar React = require('react');\nvar Markdown = require('react-markdown');\n\nReact.render(\n  <Markdown source=\"# Your markdown here\" />,\n  document.getElementById('content')\n);",
-      "snippetId": 1
+      "snippetId": "1587669572205"
     },
     {
-      "id": 2,
+      "id": "2",
       "line": 4,
       "text": "This is a **neat** *line* of code!",
-      "snippetId": 1
+      "snippetId": "1587669572205"
     }
   ],
   "profile": {

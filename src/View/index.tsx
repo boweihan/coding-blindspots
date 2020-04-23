@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { CheckCircleTwoTone } from '@ant-design/icons';
 import { Spin } from 'antd';
+import PageLoad from '../PageLoad';
+import NoSnippetFound from '../NoSnippetFound';
 import RestClient from '../shared/rest';
 import { parseIfJson } from '../shared/util';
 import { addCommentLineWidget } from '../CommentWidget';
@@ -54,11 +56,11 @@ const View = ({ location }: ViewProps) => {
     ));
 
   if (!loaded) {
-    return <div>loading</div>;
+    return <PageLoad text="Searching For Snippet..." />;
   }
 
   if (!snippet) {
-    return <div>no snippet sorry</div>;
+    return <NoSnippetFound />;
   }
 
   return (

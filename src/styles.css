@@ -1,6 +1,13 @@
 .layout {
   min-height: 100vh;
   margin: 10px;
+  display: flex;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 :global(.react-codemirror2) {

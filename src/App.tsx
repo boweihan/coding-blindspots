@@ -22,7 +22,7 @@ const App = () => {
           <Header>
             <AppHeader />
           </Header>
-          <Content>
+          <Content className={styles.content}>
             <Switch>
               <Route path="/create" component={Submission} />
               <Route path="/public" component={Featured} />
