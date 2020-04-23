@@ -2,7 +2,7 @@
 
 Front-end for customized code feedback
 
-## Building and running on localhost
+## Running on localhost with fake server
 
 First install dependencies:
 
@@ -10,24 +10,22 @@ First install dependencies:
 npm install
 ```
 
-To run in hot module reloading mode:
+Reset the fake server
+
+```sh
+npm run reset-server
+```
+
+Start the fake server
+
+```sh
+npm run start-server
+```
+
+Run the client in hot module reloading mode:
 
 ```sh
 npm start
 ```
 
-To create a production build:
-
-```sh
-npm run build-prod
-```
-
-To create a development build:
-
-```sh
-npm run build-dev
-```
-
-## Running
-
-Open the file `dist/index.html` in your browser
+Navigate to http://localhost:8080/
