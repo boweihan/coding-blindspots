@@ -100,7 +100,6 @@ const Submission = () => {
                   title,
                   text: JSON.stringify(text),
                   language,
-                  comments: [],
                 })
               }
             >

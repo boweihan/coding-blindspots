@@ -24,7 +24,7 @@
 }
 
 :global(.comment__toolbar) {
-  display: none;
+  display: none !important;
 }
 
 :global(.comment__textarea) {

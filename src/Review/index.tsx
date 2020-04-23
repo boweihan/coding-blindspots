@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { findIndex } from 'lodash';
 import { Button, message } from 'antd';
 import ReactMDE from 'react-mde';
-import { Redirect } from 'react-router-dom';
 import * as Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
+import PageLoad from '../PageLoad';
+import NoSnippetFound from '../NoSnippetFound';
+import RestClient from '../shared/rest';
 import { addCommentLineWidget } from '../CommentWidget';
 import { parseIfJson } from '../shared/util';
-import { store } from '../store';
 import { Editor, EditorOptions } from '../Editor';
-import { Comment } from '../types';
+import { Snippet, Comment } from '../types';
 import styles from './styles.css';
 import 'antd/es/button/style';
 import 'antd/es/modal/style';
@@ -31,35 +31,28 @@ interface ReviewProps {
 const widgets: any = [];
 
 const Review = ({ location }: ReviewProps) => {
-  const context = useContext(store);
-
-  // get snippet from location and context
+  const [loaded, setLoaded] = useState(false);
+  const [snippet, setSnippet] = useState<Snippet>();
+  const [comments, setComments] = useState<Array<Comment>>([]);
   const snippetId = location.hash.slice(1);
-  const {
-    state: { snippets },
-  } = context;
 
-  const snippet = snippets[findIndex(snippets, { id: snippetId })];
-
-  if (!snippet) {
-    // redirect to create page if snippet not found
-    return <Redirect to="/create" />;
-  }
-
-  const { title, language, text, comments } = snippet;
+  useEffect(() => {
+    // todo use Promise.all
+    RestClient.get(`/snippets/${snippetId}`)
+      .then((snippet) => setSnippet(snippet))
+      .then(() =>
+        RestClient.get(`/snippets/${snippetId}/comments`)
+          .then((comments) => setComments(comments))
+          .then(() => setLoaded(true))
+      )
+      .catch(() => {
+        setLoaded(true);
+      });
+  }, []);
 
   const createCommentWidgets = (cm: any) => {
     comments?.forEach((comment) => addCommentLineWidget(cm, comment));
   };
-
-  const addComment = (comment: Comment) =>
-    context.dispatch({
-      type: 'ADD_COMMENT',
-      payload: {
-        snippetId,
-        comment,
-      },
-    });
 
   const removeInputWidgets = (cm: any) => {
     for (let i = 0; i < widgets.length; i++) {
@@ -72,6 +65,22 @@ const Review = ({ location }: ReviewProps) => {
     const [selectedTab, setSelectedTab] = React.useState<'write' | 'preview'>(
       'write'
     );
+    const [commenting, setCommenting] = useState(false);
+
+    const addComment = (comment: Comment) => {
+      if (!comment.text) {
+        message.error('Comment must not be empty!');
+        return;
+      }
+      setCommenting(true);
+      RestClient.post('/comments', comment)
+        .then(() => {
+          setCommenting(false);
+          setComments([...comments, comment]);
+          message.success('Comment added!');
+        })
+        .catch(() => setCommenting(false));
+    };
 
     return (
       <div className={styles.widgetContainer}>
@@ -91,14 +100,15 @@ const Review = ({ location }: ReviewProps) => {
           </Button>
           &nbsp;
           <Button
-            onClick={() => {
+            loading={commenting}
+            onClick={() =>
               addComment({
                 id: String(new Date().getTime()),
                 line,
                 text: value,
-              });
-              message.success('Comment added!');
-            }}
+                snippetId,
+              })
+            }
           >
             Add Comment
           </Button>
@@ -115,17 +125,25 @@ const Review = ({ location }: ReviewProps) => {
     widgets.push(cm.addLineWidget(line, div));
   };
 
+  if (!loaded) {
+    return <PageLoad text="Searching For Snippet..." />;
+  }
+
+  if (!snippet) {
+    return <NoSnippetFound />;
+  }
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>{title}</h2>
+      <h2 className={styles.heading}>{snippet.title}</h2>
       <p>Review Page</p>
       <div>
-        <EditorOptions language={language} />
+        <EditorOptions language={snippet.language} />
         <div className={styles.editor}>
           <Editor
             key={JSON.stringify(comments)}
-            text={parseIfJson(text)}
-            language={language}
+            text={parseIfJson(snippet.text)}
+            language={snippet.language}
             onCursor={addInputLineWidget}
             // setTimeout required to avoid JS Execution race condition with CodeMirror
             onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)}

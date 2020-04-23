@@ -4,6 +4,7 @@ export type Comment = {
   id: string;
   line: number;
   text: string;
+  snippetId: string;
 };
 
 export type Snippet = {
@@ -11,5 +12,4 @@ export type Snippet = {
   title: string;
   text: string;
   language: Language;
-  comments?: Array<Comment>;
 };

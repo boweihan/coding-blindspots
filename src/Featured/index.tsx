@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tooltip, List, Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
+import PageLoad from '../PageLoad';
 import RestClient from '../shared/rest';
 import { parseIfJson } from '../shared/util';
 import styles from './styles.css';
@@ -20,10 +21,12 @@ const Featured = () => {
       .then(() => setLoaded(true));
   }, []);
 
+  if (!loaded) {
+    return <PageLoad text="Loading Snippets..." />;
+  }
   return (
     <div className={styles.container}>
       <List
-        loading={!loaded}
         grid={{
           gutter: 16,
           xs: 1,

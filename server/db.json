@@ -10,8 +10,7 @@
       "id": "1587669572206",
       "title": "Javascript Rest Client",
       "text": "\"import axios from 'axios';\\nimport config from '../config';\\n\\nconst get = (path: string) => {\\n  return axios\\n    .get(`${config.baseUrl}${path}`)\\n    .then((response) => {\\n      return response.data;\\n    })\\n    .catch((error) => {\\n      console.log(error);\\n    });\\n};\\n\\nconst post = (path: string, body: object) => {\\n  return axios\\n    .post(`${config.baseUrl}${path}`, body)\\n    .then((response) => {\\n      return response.data;\\n    })\\n    .catch((error) => {\\n      console.log(error);\\n    });\\n};\\n\\nexport default { get, post };\\n\"",
-      "language": "javascript",
-      "comments": []
+      "language": "javascript"
     }
   ],
   "comments": [
