@@ -11,7 +11,7 @@
     "build-dev": "npm run clean && webpack -d --mode development",
     "build-prod": "npm run clean && webpack -p --mode production",
     "start": "webpack-dev-server --hot --mode development",
-    "start-server": "json-server --watch ./server/db.json"
+    "start-server": "json-server --watch ./server/db.json --routes ./server/routes.json"
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.6",
