@@ -1,23 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tooltip, List, Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
+import RestClient from '../shared/rest';
 import { parseIfJson } from '../shared/util';
-import { store } from '../store';
 import styles from './styles.css';
+import { Snippet } from '../types';
 import 'antd/es/list/style';
 import 'antd/es/card/style';
 import 'antd/es/button/style';
 import 'antd/es/tooltip/style';
 
 const Featured = () => {
-  const context = useContext(store);
-  const {
-    state: { snippets },
-  } = context;
+  const [loaded, setLoaded] = useState(false);
+  const [snippets, setSnippets] = useState<Array<Snippet>>([]);
+
+  useEffect(() => {
+    RestClient.get('/snippets')
+      .then((snippets) => setSnippets(snippets))
+      .then(() => setLoaded(true));
+  }, []);
 
   return (
     <div className={styles.container}>
       <List
+        loading={!loaded}
         grid={{
           gutter: 16,
           xs: 1,

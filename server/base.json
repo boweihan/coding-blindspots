@@ -1,0 +1,27 @@
+{
+  "snippets": [
+    {
+      "id": 1,
+      "title": "First Snippet",
+      "text": "interface ReviewProps {\n  location: {\n    state: {\n      snippet: Snippet;\n    };\n  };\n}",
+      "language": "javascript"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "line": 1,
+      "text": "## HTML block below\n\n<blockquote>\n  This blockquote will change based on the HTML settings above.\n</blockquote>\n\n## How about some code?\n```js\nvar React = require('react');\nvar Markdown = require('react-markdown');\n\nReact.render(\n  <Markdown source=\"# Your markdown here\" />,\n  document.getElementById('content')\n);",
+      "snippetId": 1
+    },
+    {
+      "id": 2,
+      "line": 4,
+      "text": "This is a **neat** *line* of code!",
+      "snippetId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

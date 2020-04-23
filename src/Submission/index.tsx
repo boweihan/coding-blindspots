@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tooltip, Button, Input, Modal, message } from 'antd';
 import { QuestionCircleTwoTone } from '@ant-design/icons';
 import { Editor, EditorOptions, Language } from '../Editor';
-import { store } from '../store';
+import RestClient from '../shared/rest';
 import { Snippet } from '../types';
 import styles from './styles.css';
 import 'antd/es/button/style';
@@ -13,12 +13,16 @@ import 'antd/es/message/style';
 import Infographic from '../assets/infographic.png';
 
 const Submission = () => {
-  const context = useContext(store);
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
   const [language, setLanguage] = useState<Language>(Language.JAVASCRIPT);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmission = (payload: Snippet): void => {
+  useEffect(() => {
+    console.log(`count changed to ${submitting}`);
+  }, [submitting]);
+
+  const handleSubmission = (payload: Snippet) => {
     const { id, title, text } = payload;
     let parsedText = JSON.parse(text);
     if (!title || !parsedText) {
@@ -34,20 +38,21 @@ const Submission = () => {
       }
       return;
     }
-
-    context.dispatch({
-      type: 'SAVE_SNIPPET',
-      payload,
-    });
-    Modal.success({
-      title: 'Submission Success',
-      content: (
-        <p>
-          Thank you for submitting your snippet. Your submission ID is {id}. To
-          view your submission, click <a href={`/view#${id}`}>here.</a>
-        </p>
-      ),
-    });
+    setSubmitting(true);
+    RestClient.post('/snippets', payload)
+      .then(() => {
+        setSubmitting(false);
+        Modal.success({
+          title: 'Submission Success',
+          content: (
+            <p>
+              Thank you for submitting your snippet. Your submission ID is {id}.
+              To view your submission, click <a href={`/view#${id}`}>here.</a>
+            </p>
+          ),
+        });
+      })
+      .catch(() => setSubmitting(false));
   };
 
   return (
@@ -87,6 +92,7 @@ const Submission = () => {
               placeholder="Snippet Title"
             />
             <Button
+              loading={submitting}
               type="primary"
               onClick={() =>
                 handleSubmission({

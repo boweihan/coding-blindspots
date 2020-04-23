@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import { findIndex } from 'lodash';
-import { Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { CheckCircleTwoTone } from '@ant-design/icons';
 import { Spin } from 'antd';
+import RestClient from '../shared/rest';
 import { parseIfJson } from '../shared/util';
 import { addCommentLineWidget } from '../CommentWidget';
-import { store } from '../store';
 import { Editor, EditorOptions } from '../Editor';
+import { Snippet, Comment } from '../types';
 import styles from './styles.css';
 import 'antd/es/spin/style';
 
@@ -17,21 +16,24 @@ interface ViewProps {
 }
 
 const View = ({ location }: ViewProps) => {
-  const context = useContext(store);
-
-  // get snippet from location and context
+  const [loaded, setLoaded] = useState(false);
+  const [snippet, setSnippet] = useState<Snippet>();
+  const [comments, setComments] = useState<Array<Comment>>([]);
   const snippetId = location.hash.slice(1);
-  const {
-    state: { snippets },
-  } = context;
-  const snippet = snippets[findIndex(snippets, { id: snippetId })];
 
-  if (!snippet) {
-    // redirect to create page if snippet not found
-    return <Redirect to="/create" />;
-  }
-
-  const { title, language, text, comments } = snippet;
+  useEffect(() => {
+    // todo use Promise.all
+    RestClient.get(`/snippets/${snippetId}`)
+      .then((snippet) => setSnippet(snippet))
+      .then(() =>
+        RestClient.get(`/snippets/${snippetId}/comments`)
+          .then((comments) => setComments(comments))
+          .then(() => setLoaded(true))
+      )
+      .catch(() => {
+        setLoaded(true);
+      });
+  }, []);
 
   const createCommentWidgets = (cm: any) => {
     comments?.forEach((comment) => addCommentLineWidget(cm, comment));
@@ -51,18 +53,26 @@ const View = ({ location }: ViewProps) => {
       </div>
     ));
 
+  if (!loaded) {
+    return <div>loading</div>;
+  }
+
+  if (!snippet) {
+    return <div>no snippet sorry</div>;
+  }
+
   return (
     <div className={styles.container}>
       {statusContainer}
-      <h2 className={styles.heading}>{title}</h2>
+      <h2 className={styles.heading}>{snippet.title}</h2>
       <p>Public Snippet</p>
       <div>
-        <EditorOptions language={language} />
+        <EditorOptions language={snippet.language} />
         <div className={styles.editor}>
           <Editor
             key={JSON.stringify(comments)}
-            text={parseIfJson(text)}
-            language={language}
+            text={parseIfJson(snippet.text)}
+            language={snippet.language}
             // setTimeout required to avoid JS Execution race condition with CodeMirror
             onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)}
           />

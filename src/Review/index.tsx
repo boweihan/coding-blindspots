@@ -54,7 +54,7 @@ const Review = ({ location }: ReviewProps) => {
 
   const addComment = (comment: Comment) =>
     context.dispatch({
-      type: 'SAVE_COMMENT',
+      type: 'ADD_COMMENT',
       payload: {
         snippetId,
         comment,
