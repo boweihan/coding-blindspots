@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 import * as Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { addCommentLineWidget } from '../CommentWidget';
+import { parseIfJson } from '../shared/util';
 import { store } from '../store';
 import { Editor, EditorOptions } from '../Editor';
 import { Comment } from '../types';
@@ -123,7 +124,7 @@ const Review = ({ location }: ReviewProps) => {
         <div className={styles.editor}>
           <Editor
             key={JSON.stringify(comments)}
-            text={JSON.parse(text)}
+            text={parseIfJson(text)}
             language={language}
             onCursor={addInputLineWidget}
             // setTimeout required to avoid JS Execution race condition with CodeMirror
