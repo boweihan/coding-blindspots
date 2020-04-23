@@ -10,7 +10,8 @@
     "clean": "rm -rf ./dist",
     "build-dev": "npm run clean && webpack -d --mode development",
     "build-prod": "npm run clean && webpack -p --mode production",
-    "start": "webpack-dev-server --hot --mode development"
+    "start": "webpack-dev-server --hot --mode development",
+    "start-server": "json-server --watch ./server/db.json"
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.6",
@@ -49,6 +50,7 @@
     "css-modules-typescript-loader": "^4.0.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
+    "json-server": "^0.16.1",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "lodash-webpack-plugin": "^0.11.5",

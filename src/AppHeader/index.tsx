@@ -13,7 +13,7 @@ interface AppHeader {
   };
 }
 
-const AppHeader = ({ location: { pathname } }: AppHeader) => {
+const getDefaultSelectedKeys = (pathname: string): Array<string> => {
   let defaultSelectedKeys: any = [];
 
   if (includes(pathname, 'create')) {
@@ -22,6 +22,10 @@ const AppHeader = ({ location: { pathname } }: AppHeader) => {
     defaultSelectedKeys.push('2');
   }
 
+  return defaultSelectedKeys;
+};
+
+const AppHeader = ({ location: { pathname } }: AppHeader) => {
   return (
     <>
       <h1 className={styles.logo}>CodingBlindspots</h1>
@@ -37,7 +41,7 @@ const AppHeader = ({ location: { pathname } }: AppHeader) => {
               <Menu
                 theme="dark"
                 mode="horizontal"
-                defaultSelectedKeys={defaultSelectedKeys}
+                defaultSelectedKeys={getDefaultSelectedKeys(pathname)}
               >
                 <Menu.Item key="1">
                   <Link to="/create" className={styles.smallIconLink}>
@@ -55,7 +59,7 @@ const AppHeader = ({ location: { pathname } }: AppHeader) => {
               <Menu
                 theme="dark"
                 mode="horizontal"
-                defaultSelectedKeys={defaultSelectedKeys}
+                defaultSelectedKeys={getDefaultSelectedKeys(pathname)}
               >
                 <Menu.Item key="1">
                   <Link to="/create">

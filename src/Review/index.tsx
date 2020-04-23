@@ -6,7 +6,7 @@ import ReactMDE from 'react-mde';
 import { Redirect } from 'react-router-dom';
 import * as Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
-
+import { addCommentLineWidget } from '../CommentWidget';
 import { store } from '../store';
 import { Editor, EditorOptions } from '../Editor';
 import { Comment } from '../types';
@@ -32,6 +32,7 @@ const widgets: any = [];
 const Review = ({ location }: ReviewProps) => {
   const context = useContext(store);
 
+  // get snippet from location and context
   const snippetId = location.hash.slice(1);
   const {
     state: { snippets },
@@ -40,38 +41,14 @@ const Review = ({ location }: ReviewProps) => {
   const snippet = snippets[findIndex(snippets, { id: snippetId })];
 
   if (!snippet) {
+    // redirect to create page if snippet not found
     return <Redirect to="/create" />;
   }
 
   const { title, language, text, comments } = snippet;
 
-  const commentWidget = (comment: Comment) => {
-    return (
-      <div className={styles.commentContainer}>
-        <ReactMDE
-          className="comment__textarea"
-          value={comment.text}
-          selectedTab={'preview'}
-          readOnly
-          classes={{
-            toolbar: 'comment__toolbar',
-          }}
-          minPreviewHeight={10}
-          generateMarkdownPreview={(markdown) =>
-            Promise.resolve(converter.makeHtml(markdown))
-          }
-        />
-      </div>
-    );
-  };
-
   const createCommentWidgets = (cm: any) => {
-    comments?.forEach((comment) =>
-      cm.addLineWidget(
-        comment.line,
-        ReactDOM.render(commentWidget(comment), document.createElement('div'))
-      )
-    );
+    comments?.forEach((comment) => addCommentLineWidget(cm, comment));
   };
 
   const addComment = (comment: Comment) =>
@@ -148,15 +125,11 @@ const Review = ({ location }: ReviewProps) => {
             key={JSON.stringify(comments)}
             text={JSON.parse(text)}
             language={language}
-            onKeyDown={addInputLineWidget}
-            onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)} // setTimeout required to avoid JS Execution race condition with CodeMirror
+            onCursor={addInputLineWidget}
+            // setTimeout required to avoid JS Execution race condition with CodeMirror
+            onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)}
           />
         </div>
-        {/* <div className={styles.submit}>
-          <Button type="primary" onClick={() => {}}>
-            Submit Review
-          </Button>
-        </div> */}
       </div>
     </div>
   );

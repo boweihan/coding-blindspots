@@ -2,10 +2,7 @@ import React from 'react';
 import styles from './styles.css';
 
 const AppFooter = () => (
-  <div className={styles.footer}>
-    By using Coding Blindspots you agree to our cookies policy to enhance your
-    experience
-  </div>
+  <div className={styles.footer}>2020 Coding Blindspots</div>
 );
 
 export default AppFooter;

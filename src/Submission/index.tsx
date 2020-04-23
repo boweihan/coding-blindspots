@@ -12,13 +12,7 @@ import 'antd/es/message/style';
 // @ts-ignore
 import Infographic from '../assets/infographic.png';
 
-interface SubmissionProps {
-  history: {
-    push: Function;
-  };
-}
-
-const Submission = (props: SubmissionProps) => {
+const Submission = () => {
   const context = useContext(store);
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');

@@ -5,11 +5,11 @@ import style from './styles.css';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 
-interface Props {
+interface EditorProps {
   text: string;
   language: Language;
   onChange?: any;
-  onKeyDown?: any;
+  onCursor?: any;
   onMount?: any;
   editable?: boolean;
   setRef?: (ref: any) => void;
@@ -19,27 +19,25 @@ const Editor = ({
   text,
   language,
   onChange = () => {},
-  onKeyDown = () => {},
+  onCursor = () => {},
   onMount = () => {},
   editable = true,
   setRef = () => {},
-}: Props) => {
-  return (
-    <div className={style.container}>
-      <CodeMirror
-        ref={setRef}
-        value={text}
-        onBeforeChange={onChange}
-        onCursor={onKeyDown}
-        editorDidMount={onMount}
-        options={{
-          readOnly: !editable,
-          mode: language,
-          lineNumbers: true,
-        }}
-      />
-    </div>
-  );
-};
+}: EditorProps) => (
+  <div className={style.container}>
+    <CodeMirror
+      ref={setRef}
+      value={text}
+      onBeforeChange={onChange}
+      onCursor={onCursor}
+      editorDidMount={onMount}
+      options={{
+        readOnly: !editable,
+        mode: language,
+        lineNumbers: true,
+      }}
+    />
+  </div>
+);
 
 export default Editor;
