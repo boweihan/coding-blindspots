@@ -39,7 +39,7 @@ const Submission = () => {
       return;
     }
     setSubmitting(true);
-    RestClient.post('/snippets', payload)
+    RestClient.post('/snippets/', payload)
       .then(() => {
         setSubmitting(false);
         Modal.success({
@@ -96,6 +96,7 @@ const Submission = () => {
               type="primary"
               onClick={() =>
                 handleSubmission({
+                  /*TODO: Replace new Date() with something else as it might collide in case we have high concurrent users. */
                   id: String(new Date().getTime()),
                   title,
                   text: JSON.stringify(text),

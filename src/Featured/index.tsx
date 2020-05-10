@@ -16,7 +16,7 @@ const Featured = () => {
   const [snippets, setSnippets] = useState<Array<Snippet>>([]);
 
   useEffect(() => {
-    RestClient.get('/snippets')
+    RestClient.get('/snippets/')
       .then((snippets) => setSnippets(snippets))
       .then(() => setLoaded(true));
   }, []);
