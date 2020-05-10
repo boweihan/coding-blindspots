@@ -18,12 +18,8 @@ const Submission = () => {
   const [language, setLanguage] = useState<Language>(Language.JAVASCRIPT);
   const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    console.log(`count changed to ${submitting}`);
-  }, [submitting]);
-
   const handleSubmission = (payload: Snippet) => {
-    const { id, title, text } = payload;
+    const { title, text } = payload;
     let parsedText = JSON.parse(text);
     if (!title || !parsedText) {
       if (!title && !parsedText) {
@@ -40,7 +36,7 @@ const Submission = () => {
     }
     setSubmitting(true);
     RestClient.post('/snippets/', payload)
-      .then(() => {
+      .then(({ id }) => {
         setSubmitting(false);
         Modal.success({
           title: 'Submission Success',
@@ -96,8 +92,6 @@ const Submission = () => {
               type="primary"
               onClick={() =>
                 handleSubmission({
-                  /*TODO: Replace new Date() with something else as it might collide in case we have high concurrent users. */
-                  id: String(new Date().getTime()),
                   title,
                   text: JSON.stringify(text),
                   language,

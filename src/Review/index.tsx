@@ -73,10 +73,10 @@ const Review = ({ location }: ReviewProps) => {
         return;
       }
       setCommenting(true);
-      RestClient.post('/comments', comment)
-        .then(() => {
+      RestClient.post('/comments/', comment)
+        .then((response) => {
           setCommenting(false);
-          setComments([...comments, comment]);
+          setComments([...comments, response]);
           message.success('Comment added!');
         })
         .catch(() => setCommenting(false));
@@ -103,7 +103,6 @@ const Review = ({ location }: ReviewProps) => {
             loading={commenting}
             onClick={() =>
               addComment({
-                id: String(new Date().getTime()),
                 line,
                 text: value,
                 snippetId,
