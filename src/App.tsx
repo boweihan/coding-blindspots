@@ -11,6 +11,7 @@ import Submission from './Submission';
 import Featured from './Featured';
 import Review from './Review';
 import View from './View';
+import Snippets from './Snippets';
 import styles from './styles.css';
 const { Header, Content, Footer } = Layout;
 
@@ -26,8 +27,10 @@ const App = () => {
             <Switch>
               <Route path="/create" component={Submission} />
               <Route path="/public" component={Featured} />
+              <Route path="/public2" component={Featured} />
               <Route path="/review" component={Review} />
               <Route path="/view" component={View} />
+              <Route path="/snippets" component={Snippets} />
               <Route path="*" component={Submission} />
             </Switch>
           </Content>

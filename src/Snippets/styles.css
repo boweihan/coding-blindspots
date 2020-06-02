@@ -1,0 +1,31 @@
+.container {
+  background: #fff;
+  margin: 24px;
+  padding: 24px;
+}
+
+.heading {
+  font-size: 20px;
+}
+
+.tooltip {
+  margin-left: 10px;
+}
+
+.statusContainer {
+  margin-bottom: 10px;
+}
+
+.loadingText {
+  color: #00a8e6;
+  margin-left: 8px;
+}
+
+.successText {
+  color: #52c41a;
+  margin-left: 8px;
+}
+
+.editor {
+  min-height: 70vh;
+}
