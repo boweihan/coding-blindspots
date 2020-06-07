@@ -2,3 +2,8 @@
   margin-left: 6px;
   margin-right: 6px;
 }
+
+.commentAnchor {
+    max-width: 500px;
+    background-color: #e1e1173b; /*some shade of yellow*/
+}
