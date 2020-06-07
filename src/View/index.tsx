@@ -28,8 +28,8 @@ const View = ({ location }: ViewProps) => {
     RestClient.get(`/snippets/${snippetId}`)
       .then((snippet) => setSnippet(snippet))
       .then(() =>
-        RestClient.get(`/comments/`)
-        //RestClient.get(`/snippets/${snippetId}/comments`)
+        //RestClient.get(`/comments/`)
+        RestClient.get(`/snippets/${snippetId}/comments`)
           .then((comments) => setComments(comments))
           .then(() => setLoaded(true))
       )
