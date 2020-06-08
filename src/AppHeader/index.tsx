@@ -28,7 +28,7 @@ const getDefaultSelectedKeys = (pathname: string): Array<string> => {
 const AppHeader = ({ location: { pathname } }: AppHeader) => {
   return (
     <>
-      <h1 className={styles.logo}>CodingBlindspots</h1>
+      <a href="/"><h1 className={styles.logo}>CodingBlindspots</h1></a>
       <Media
         queries={{
           small: '(max-width: 600px)',
