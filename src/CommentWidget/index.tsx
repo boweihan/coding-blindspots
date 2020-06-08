@@ -38,6 +38,7 @@ const CommentWidget = ({ comment }: ViewProps) => {
 
 export const addCommentLineWidget = (cm: any, comment: Comment) => {
   const anchor = document.createElement('div');
+  anchor.className = styles.commentAnchor;//"commentAnchor";
   ReactDOM.render(<CommentWidget comment={comment} />, anchor);
   cm.addLineWidget(comment.line, anchor);
 };
