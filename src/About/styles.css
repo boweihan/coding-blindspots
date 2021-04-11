@@ -1,0 +1,13 @@
+.container {
+  margin: 24px;
+  padding: 24px;
+}
+
+.infographicContainer {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.infographic {
+  width: 100%;
+}

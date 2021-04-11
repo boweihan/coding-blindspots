@@ -3,13 +3,13 @@
 interface CssExports {
   'container': string;
   'editor': string;
+  'editorContainer': string;
+  'editorContainerColumnLeft': string;
+  'editorContainerColumnRight': string;
+  'editorContainerInput': string;
   'heading': string;
-  'infographic': string;
-  'infographicContainer': string;
   'secondaryHeading': string;
   'submit': string;
-  'title': string;
-  'tooltip': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

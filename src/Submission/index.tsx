@@ -9,12 +9,11 @@ import 'antd/es/button/style';
 import 'antd/es/input/style';
 import 'antd/es/modal/style';
 import 'antd/es/message/style';
-// @ts-ignore
-import Infographic from '../assets/infographic.png';
 
 const Submission = () => {
   const [text, setText] = useState('');
   const [title, setTitle] = useState('');
+  const [position, setPosition] = useState('');
   const [language, setLanguage] = useState<Language>(Language.JAVASCRIPT);
   const [submitting, setSubmitting] = useState(false);
 
@@ -54,67 +53,88 @@ const Submission = () => {
   return (
     <>
       <div className={styles.container}>
-        <h2 className={styles.heading}>
-          Submit Question and Code
-          <Tooltip
-            title="
-            In order for us to give you feedback on your code, please ensure that you submit the complete
-            question along with your solution. Submissions with inadequate context will be ignored.
-            "
-          >
-            <QuestionCircleTwoTone className={styles.tooltip} />
-          </Tooltip>
-        </h2>
-        <div>
-          <EditorOptions
-            language={language}
-            setLanguage={setLanguage}
-            enabled
-          />
-          <div className={styles.editor}>
-            <Editor
-              text={text}
-              language={language}
-              onChange={(editor: any, data: any, value: string) => {
-                setText(value);
-              }}
-              editable
-            />
+        <div className={styles.editorContainer}>
+
+          <div className={styles.editorContainerColumnLeft}>
+            <div className={styles.editorContainerInput}>
+              <span className={styles.secondaryHeading}>
+                Title
+              </span>
+              <Input
+                onChange={(title) => setTitle(title.currentTarget.value)}
+                placeholder="Choose a short descriptive title"
+              />
+            </div>
+            <div className={styles.editorContainerInput}>
+              <span className={styles.secondaryHeading}>
+                Description
+              </span>
+              <Input
+                onChange={(description) => setPosition(description.currentTarget.value)}
+                placeholder="Describe your question here"
+              />
+            </div>
+            <div className={styles.editor}>
+              <span className={styles.secondaryHeading}>
+                Solution
+              </span>
+              <Editor
+                text={text}
+                language={language}
+                onChange={(editor: any, data: any, value: string) => {
+                  setText(value);
+                }}
+                editable
+              />
+            </div>
           </div>
-          <div className={styles.submit}>
-            <Input
-              className={styles.title}
-              onChange={(title) => setTitle(title.currentTarget.value)}
-              placeholder="Snippet Title"
-            />
-            <Button
-              loading={submitting}
-              type="primary"
-              onClick={() =>
-                handleSubmission({
-                  title,
-                  text: JSON.stringify(text),
-                  language,
-                })
-              }
+
+          <div className={styles.editorContainerColumnRight}>
+            <div className={styles.editorContainerInput}>
+              <span className={styles.secondaryHeading}>
+                Language
+              </span>
+              <EditorOptions
+                language={language}
+                setLanguage={setLanguage}
+                enabled
+              />
+            </div>
+            <div className={styles.editorContainerInput}>
+              <span className={styles.secondaryHeading}>
+                Position
+              </span>
+              <Input
+                onChange={(position) => setPosition(position.currentTarget.value)}
+                placeholder="Which position are you interviewing for?"
+                type="textarea"
+              />
+            </div>
+
+            <p>
+              In order for us to give you feedback on your code, please ensure that you submit the complete question along with your solution. Submissions with inadequate context will be ignored.
+            </p>
+
+            <Tooltip
+              title="Submit"
             >
-              Submit Snippet
-            </Button>
+              <Button
+                loading={submitting}
+                type="primary"
+                onClick={() =>
+                  handleSubmission({
+                    title,
+                    text: JSON.stringify(text),
+                    language,
+                  })
+                }
+              >
+                Submit for review
+              </Button>
+            </Tooltip>
           </div>
         </div>
-      </div>
-      <div className={styles.container}>
-        <p className={styles.secondaryHeading}>Your Previous Submissions</p>
-        <p>Please login to view previous submissions.</p>
-        <Button type="primary">Login</Button>&nbsp;
-        <Button type="default">Signup</Button>
-      </div>
-      <div className={styles.infographicContainer}>
-        <img
-          className={styles.infographic}
-          src={Infographic}
-          alt="CodingBlindspots infographic"
-        />
+
       </div>
     </>
   );

@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { PlusCircleFilled, ProfileFilled } from '@ant-design/icons';
+import {
+  PlusCircleFilled,
+  StarFilled,
+  LoginOutlined,
+  QuestionCircleFilled
+} from '@ant-design/icons';
 import { includes } from 'lodash';
-import { Menu } from 'antd';
+import { Menu, Button } from 'antd';
 import Media from 'react-media';
 import styles from './styles.css';
 import 'antd/es/menu/style';
@@ -28,56 +33,40 @@ const getDefaultSelectedKeys = (pathname: string): Array<string> => {
 const AppHeader = ({ location: { pathname } }: AppHeader) => {
   return (
     <>
-      <a href="/"><h1 className={styles.logo}>CodingBlindspots</h1></a>
-      <Media
-        queries={{
-          small: '(max-width: 600px)',
-          large: '(min-width: 601px)',
-        }}
+      <a href="/">
+        <h1 className={styles.logo}>CodingBlindspots</h1>
+      </a>
+
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={getDefaultSelectedKeys(pathname)}
       >
-        {(matches) => (
-          <>
-            {matches.small && (
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={getDefaultSelectedKeys(pathname)}
-              >
-                <Menu.Item key="1">
-                  <Link to="/create" className={styles.smallIconLink}>
-                    <PlusCircleFilled />
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  <Link to="/public" className={styles.smallIconLink}>
-                    <ProfileFilled />
-                  </Link>
-                </Menu.Item>
-              </Menu>
-            )}
-            {matches.large && (
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={getDefaultSelectedKeys(pathname)}
-              >
-                <Menu.Item key="1">
-                  <Link to="/create">
-                    <PlusCircleFilled />
-                    Submit
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  <Link to="/public">
-                    <ProfileFilled />
-                    Featured
-                  </Link>
-                </Menu.Item>
-              </Menu>
-            )}
-          </>
-        )}
-      </Media>
+        <Menu.Item key="1">
+          <Link to="/create">
+            <PlusCircleFilled />
+            Create submission
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Link to="/public">
+            <StarFilled />
+            All Reviews
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="3">
+          <Link to="/about">
+            <QuestionCircleFilled />
+            How it works
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="4">
+          <Link to="/public">
+            <LoginOutlined />
+            Login/Signup
+          </Link>
+        </Menu.Item>
+      </Menu>
     </>
   );
 };

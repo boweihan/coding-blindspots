@@ -1,57 +1,42 @@
 .container {
-  background: #fff;
-  margin: 24px;
-  padding: 24px;
+  background: #ffffff;
+  padding: 48px;
+}
+
+.editorContainer {
+  display: flex;
+}
+
+.editorContainerColumnLeft,
+.editorContainerColumnRight {
+}
+.editorContainerColumnLeft {
+  padding-right: 24px;
+  flex: 3;
+}
+.editorContainerColumnRight {
+  flex: 1;
+}
+
+.editorContainerInput {
+  margin-bottom: 12px;
 }
 
 .editor {
-  min-height: 500px;
   height: 500px;
-}
-
-.infographicContainer {
-  margin-left: 24px;
-  margin-right: 24px;
-}
-
-@media screen and (min-width: 961px) {
-  .infographicContainer {
-    margin-left: 20vw;
-    margin-right: 20vw;
-  }
-}
-
-@media screen and (min-width: 600px) and (max-width: 960px) {
-  .infographicContainer {
-    margin-left: 10vw;
-    margin-right: 10vw;
-  }
-}
-
-.infographic {
-  width: 100%;
-  opacity: 0.8;
+  min-height: 500px;
 }
 
 .heading {
   font-size: 20px;
 }
 
-.tooltip {
-  margin-left: 10px;
-}
-
 .submit {
   text-align: right;
-  margin-top: 12px;
   width: 100%;
 }
 
 .secondaryHeading {
   font-size: 14px;
   font-weight: bold;
-}
-
-.title {
-  width: 150px !important;
 }
