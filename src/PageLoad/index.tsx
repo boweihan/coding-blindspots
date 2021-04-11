@@ -1,5 +1,5 @@
 import React from 'react';
-import HashLoader from 'react-spinners/HashLoader';
+import GridLoader from 'react-spinners/GridLoader';
 import styles from './styles.css';
 
 interface PageLoadProps {
@@ -8,7 +8,7 @@ interface PageLoadProps {
 
 const PageLoad = ({ text }: PageLoadProps) => (
   <div className={styles.loaderContainer}>
-    <HashLoader size={100} />
+    <GridLoader size={10} margin={3} />
     <p className={styles.loaderText}>{text}</p>
   </div>
 );

@@ -3,7 +3,6 @@
 interface CssExports {
   'container': string;
   'infographic': string;
-  'infographicContainer': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
