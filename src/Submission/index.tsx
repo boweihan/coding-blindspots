@@ -116,7 +116,7 @@ const Submission = () => {
             </p>
 
             <Tooltip
-              title="Submit"
+              title="Make sure everything is filled out as you intended. You won’t be able to make any changes after submitting the snippet."
             >
               <Button
                 loading={submitting}
@@ -129,7 +129,7 @@ const Submission = () => {
                   })
                 }
               >
-                Submit for review
+                Submit snippet
               </Button>
             </Tooltip>
           </div>

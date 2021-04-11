@@ -45,13 +45,13 @@ const AppHeader = ({ location: { pathname } }: AppHeader) => {
         <Menu.Item key="1">
           <Link to="/create">
             <PlusCircleFilled />
-            Create submission
+            New submission
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
           <Link to="/public">
             <StarFilled />
-            All Reviews
+            Featured reviews
           </Link>
         </Menu.Item>
         <Menu.Item key="3">
@@ -61,7 +61,7 @@ const AppHeader = ({ location: { pathname } }: AppHeader) => {
           </Link>
         </Menu.Item>
         <Menu.Item key="4">
-          <Link to="/public">
+          <Link to="/login">
             <LoginOutlined />
             Login/Signup
           </Link>
