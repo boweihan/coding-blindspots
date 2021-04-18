@@ -125,7 +125,7 @@ const Review = ({ location }: ReviewProps) => {
   };
 
   if (!loaded) {
-    return <PageLoad text="Searching For Snippet..." />;
+    return <PageLoad text="Loading Snippet…" />;
   }
 
   if (!snippet) {

@@ -1,3 +1,20 @@
 .footer {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.secondaryHeading {
+  font-size: 14px;
+  font-weight: bold;
 }
