@@ -25,7 +25,7 @@ const App = () => {
           </Header>
           <Content className={styles.content}>
             <Switch>
-              <Route path="/" component={Featured} />
+              <Route path="/public" component={Featured} />
               <Route path="/create" component={Submission} />
               <Route path="/review" component={Review} />
               <Route path="/view" component={View} />

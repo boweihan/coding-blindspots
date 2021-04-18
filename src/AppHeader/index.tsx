@@ -20,8 +20,7 @@ interface AppHeader {
 
 const getDefaultSelectedKeys = (pathname: string): Array<string> => {
   let defaultSelectedKeys: any = [];
-  console.log('pathname', pathname);
-  if (pathname === '') {
+  if (includes(pathname, 'public')) {
     defaultSelectedKeys.push('1');
   } else if (includes(pathname, 'about')) {
     defaultSelectedKeys.push('2');
@@ -47,7 +46,7 @@ const AppHeader = ({ location: { pathname } }: AppHeader) => {
         defaultSelectedKeys={getDefaultSelectedKeys(pathname)}
       >
         <Menu.Item key="1">
-          <Link to="/">
+          <Link to="/public">
             <StarFilled />
             Featured reviews
           </Link>
