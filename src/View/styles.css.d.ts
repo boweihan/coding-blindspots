@@ -6,9 +6,11 @@ interface CssExports {
   'editor': string;
   'editorContainer': string;
   'heading': string;
+  'info': string;
   'loadingText': string;
   'statusContainer': string;
   'successText': string;
+  'tag': string;
   'tooltip': string;
 }
 export const cssExports: CssExports;

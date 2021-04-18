@@ -66,11 +66,17 @@ const View = ({ location }: ViewProps) => {
 
   return (
     <div className={styles.container}>
-      {statusContainer}
-      <h2 className={styles.heading}>{snippet.title}</h2>
-      <p>Public Snippet</p>
+      <h2 className={styles.heading}>
+        {snippet.title}
+      </h2>
+      <div className={styles.info}>
+        {statusContainer}
+        <div className={styles.tagContainer}>
+          <span className={styles.tag}>{snippet.language}</span>
+          <span className={styles.tag}>Public Snippet</span>
+        </div>
+      </div>
       <div className={styles.editorContainer}>
-        <EditorOptions language={snippet.language} />
         <div className={styles.editor}>
           <Editor
             key={JSON.stringify(comments)}
