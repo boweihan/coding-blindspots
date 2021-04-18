@@ -22,7 +22,7 @@ const Featured = () => {
   }, []);
 
   if (!loaded) {
-    return <PageLoad text="Loading Snippets" />;
+    return <PageLoad text="Loading Snippets…" />;
   }
   return (
     <div className={styles.container}>

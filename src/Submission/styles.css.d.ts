@@ -8,6 +8,7 @@ interface CssExports {
   'editorContainerColumnRight': string;
   'editorContainerInput': string;
   'heading': string;
+  'info': string;
   'secondaryHeading': string;
   'submit': string;
 }

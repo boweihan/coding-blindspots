@@ -8,7 +8,7 @@ interface PageLoadProps {
 
 const PageLoad = ({ text }: PageLoadProps) => (
   <div className={styles.loaderContainer}>
-    <GridLoader size={10} margin={3} />
+    <GridLoader size={8} margin={3} />
     <p className={styles.loaderText}>{text}</p>
   </div>
 );

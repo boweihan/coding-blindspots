@@ -13,3 +13,8 @@
   display: flex;
   flex-direction: column;
 }
+
+.secondaryHeading {
+  font-size: 14px;
+  font-weight: bold;
+}

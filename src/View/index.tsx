@@ -47,17 +47,17 @@ const View = ({ location }: ViewProps) => {
     (comments.length <= 0 ? (
       <div className={styles.statusContainer}>
         <Spin size="small" />
-        <span className={styles.loadingText}>pending review</span>
+        <span className={styles.loadingText}>Review pending</span>
       </div>
     ) : (
       <div className={styles.statusContainer}>
         <CheckCircleTwoTone twoToneColor="#52c41a" />
-        <span className={styles.successText}>review complete</span>
+        <span className={styles.successText}>Review complete</span>
       </div>
     ));
 
   if (!loaded) {
-    return <PageLoad text="Searching For Snippet..." />;
+    return <PageLoad text="Loading Snippets…" />;
   }
 
   if (!snippet) {
@@ -69,7 +69,7 @@ const View = ({ location }: ViewProps) => {
       {statusContainer}
       <h2 className={styles.heading}>{snippet.title}</h2>
       <p>Public Snippet</p>
-      <div>
+      <div className={styles.editorContainer}>
         <EditorOptions language={snippet.language} />
         <div className={styles.editor}>
           <Editor

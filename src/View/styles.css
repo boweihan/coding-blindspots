@@ -1,5 +1,6 @@
 .container {
   background: #fff;
+  min-height: 100vh;
   padding: 48px;
 }
 
@@ -25,6 +26,15 @@
   margin-left: 8px;
 }
 
+.editorContainer {
+  padding-right: 24px;
+  width: 75%;
+}
+
 .editor {
   min-height: 70vh;
+}
+
+.CodeMirror-scroll {
+  overflow: hidden !important;
 }

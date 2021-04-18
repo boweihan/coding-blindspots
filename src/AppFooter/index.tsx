@@ -4,7 +4,7 @@ import styles from './styles.css';
 const AppFooter = () => (
   <div className={styles.footer}>
     <div className={styles.footerColumn}>
-      <div>Learn more</div>
+      <div className={styles.secondaryHeading}>Learn more</div>
       <ul className={styles.footerList}>
         <li>
           <a href="/about">About</a>
@@ -25,7 +25,7 @@ const AppFooter = () => (
     </div>
 
     <div className={styles.footerColumn}>
-      <div>Featured</div>
+      <div className={styles.secondaryHeading}>Featured</div>
       <ul className={styles.footerList}>
         <li>
           <a href="/public">Reviewers</a>
@@ -36,7 +36,7 @@ const AppFooter = () => (
       </ul>
     </div>
 
-    &copy; 2021 Coding Blindspots
+    Coding Blindspots &copy; 2021
   </div>
 );
 

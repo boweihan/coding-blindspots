@@ -1,6 +1,7 @@
 .container {
   background: #ffffff;
   padding: 48px;
+  min-height: 100vh;
 }
 
 .editorContainer {
@@ -39,4 +40,9 @@
 .secondaryHeading {
   font-size: 14px;
   font-weight: bold;
+}
+
+.info {
+  padding-top: 18px;
+  padding-right: 12px;
 }

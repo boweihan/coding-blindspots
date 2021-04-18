@@ -9,6 +9,7 @@
   flex: 1;
 }
 
+/* Codemirror */
 :global(.react-codemirror2) {
   height: 100%;
 }
@@ -22,11 +23,68 @@
 }
 
 :global(.comment__textarea) {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border: 1px solid #52c41a;
+  background: #52c41a;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 :global(.comment__textarea):hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
+}
+
+/* Menu */
+:global(.ant-menu) {
+  background: #fafafa;
+  display: flex;
+}
+:global(.menu-login) {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+
+}
+:global(.menu-create > a) {
+  color: #52c41a !important;
+}
+
+/* Layout */
+:global(.ant-layout-header) { 
+  background-color:#fafafa;
+}
+:global(.ant-body) {
+  background-color:#ffffff;
+}
+:global(.ant-layout-content) { 
+  background-color:#ffffff;
+}
+:global(.ant-layout-footer) { 
+  background-color:#fafafa;
+}
+
+/* Card */
+:global(.ant-card) {
+  background-color:#fafafa;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+:global(.ant-card:hover) {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;;
+}
+:global(.ant-card-head) {
+  background-color:#ffffff;
+  border-bottom: none;
+}
+:global(.ant-card-extra) {
+  background: #000000;
+  border-radius: 1em;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 0.1em 0.8em;
+}
+:global(.ant-card-actions) {
+  background-color:#ffffff;
+  border-bottom: none;
+  color: #1890ff !important;
+}
+:global(.ant-card-actions:hover > a) {
+  background-color:#1890ff !important;
 }
