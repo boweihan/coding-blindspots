@@ -66,7 +66,7 @@ const AppHeader = ({ location: { pathname } }: AppHeader) => {
         <Menu.Item key="4" className="menu-login">
           <Link to="/login">
             <LoginOutlined />
-            Login/Signup
+            Login or Signup
           </Link>
         </Menu.Item>
       </Menu>
