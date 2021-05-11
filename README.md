@@ -25,10 +25,12 @@ npm run start-server
 Run the client in hot module reloading mode:
 
 ```sh
+Main way
 npm start
 ```
 
 Navigate to http://localhost:8080/
+
 
 Screenshots
 
