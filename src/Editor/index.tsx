@@ -11,7 +11,7 @@ import 'codemirror/mode/rust/rust';
 import 'codemirror/mode/php/php';
 
 enum Language {
-  JAVA = 'clike',
+  JAVA = 'java',
   PYTHON = 'python',
   JAVASCRIPT = 'javascript',
   RUBY = 'ruby',
@@ -19,6 +19,7 @@ enum Language {
   GO = 'go',
   RUST = 'rust',
   PHP = 'php',
+  CLIKE = 'clike',
 }
 
 export { Language, Editor, EditorOptions };

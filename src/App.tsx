@@ -12,6 +12,7 @@ import Featured from './Featured';
 import Review from './Review';
 import About from './About';
 import View from './View';
+import Login from './View';
 import styles from './styles.css';
 const { Header, Content, Footer } = Layout;
 
@@ -30,6 +31,7 @@ const App = () => {
               <Route path="/review" component={Review} />
               <Route path="/view" component={View} />
               <Route path="/about" component={About} />
+              <Route path="/login" component={Login} />
               <Route path="*" component={Submission} />
             </Switch>
           </Content>

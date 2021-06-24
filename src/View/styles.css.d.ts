@@ -11,6 +11,7 @@ interface CssExports {
   'statusContainer': string;
   'successText': string;
   'tag': string;
+  'tagContainer': string;
   'tooltip': string;
 }
 export const cssExports: CssExports;

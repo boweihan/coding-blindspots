@@ -11,7 +11,8 @@ interface Props {
 }
 
 const languageToText = {
-  clike: 'Java',
+  clike: 'C/C++ or other languages',
+  java: 'Java',
   python: 'Python',
   javascript: 'JavaScript',
   ruby: 'Ruby',
