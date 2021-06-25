@@ -15,6 +15,7 @@ interface EditorProps {
   setRef?: (ref: any) => void;
 }
 
+  console.log("inside src/Editor/Editor/index.tsx");
 const Editor = ({
   text,
   language,

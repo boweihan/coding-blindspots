@@ -13,10 +13,18 @@ import Review from './Review';
 import About from './About';
 import View from './View';
 import Login from './View';
+import Logout from './View';
 import styles from './styles.css';
+import { useCookies } from "react-cookie";
 const { Header, Content, Footer } = Layout;
 
 const App = () => {
+  const [cookies, setCookie] = useCookies(["user"]);
+  function handleCookie() {
+    setCookie("user", "gowtham", {      path: "/"    });  
+  }
+
+console.log("inside src/App.tsx");
   return (
     <StateProvider>
       <Router>
@@ -32,6 +40,7 @@ const App = () => {
               <Route path="/view" component={View} />
               <Route path="/about" component={About} />
               <Route path="/login" component={Login} />
+              <Route path="/logout" component={Logout} />
               <Route path="*" component={Submission} />
             </Switch>
           </Content>

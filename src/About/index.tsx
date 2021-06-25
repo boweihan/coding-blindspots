@@ -13,6 +13,7 @@ import 'antd/es/message/style';
 import Infographic from '../assets/infographic.png';
 
 const About = () => {
+console.log("inside src/About/index.tsx");
   return (
     <>
       <div className={styles.container}>

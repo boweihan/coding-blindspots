@@ -8,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
+import { useCookies } from "react-cookie";
+import Cookies from 'universal-cookie';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -110,11 +112,19 @@ async function loginUser(credentials : []) {
 }
 
 
-
-
 const Login = () => {
   const classes = useStyles();
+
+const [cookies, setCookie] = useCookies(["user"]);
+function handleCookie() {
+ console.log("about to set cookie");
+  setCookie("user", "gowtham", {      path: "/"    });  
+ console.log("successfully set cookie");
+}
+
+
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("inside src/view/login.tsx");
 
   useEffect(() => {
     if (state.username.trim() && state.password.trim()) {
@@ -133,6 +143,7 @@ const Login = () => {
   const handleLogin = () => {
     console.log("3 username is " + state.username);
     console.log("4 password is " + state.password);
+    //cookies.set("user", "gowtham", { path: "/" }); // setting the cookie
 
     var credentials= {
         username: state.username,
@@ -141,6 +152,15 @@ const Login = () => {
     RestClient.post(`/api/v1/token/login`, credentials)
       .then((tokenresponse) => { 
            console.log("response from django login server. Good " + tokenresponse.auth_token)
+
+            //This also works.
+            handleCookie();
+
+            //This works fine.
+            const cookies = new Cookies();
+            cookies.set('myCat', 'Pacman', { path: '/' });
+            console.log(cookies.get('myCat')); // Pacman
+
            dispatch({
              type: 'loginSuccess',
              payload: 'Login Succeeded'
@@ -180,7 +200,7 @@ const Login = () => {
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <Card className={classes.card}>
-        <CardHeader className={classes.header} title="Login App" />
+        <CardHeader className={classes.header} title="Please Login" />
         <CardContent>
           <div>
             <TextField

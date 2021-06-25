@@ -14,6 +14,7 @@ import 'antd/es/tooltip/style';
 const Featured = () => {
   const [loaded, setLoaded] = useState(false);
   const [snippets, setSnippets] = useState<Array<Snippet>>([]);
+  console.log("inside src/Featured/index.tsx");
 
   useEffect(() => {
     RestClient.get('/snippets/')

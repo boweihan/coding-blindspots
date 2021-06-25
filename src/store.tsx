@@ -16,6 +16,7 @@ const initialContext = {
 const store = createContext<Context>(initialContext);
 const { Provider } = store;
 
+console.log("inside src/store.tsx");
 const StateProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer((state: any, action: any) => {
     switch (action.type) {

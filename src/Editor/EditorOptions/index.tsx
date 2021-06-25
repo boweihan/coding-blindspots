@@ -22,6 +22,7 @@ const languageToText = {
   php: 'PHP',
 };
 
+  console.log("inside src/Editor/EditorOptions/index.tsx");
 const EditorOptions = ({ language, setLanguage, enabled }: Props) => (
   <Select
     defaultValue={language}

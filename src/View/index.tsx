@@ -10,6 +10,8 @@ import { Editor, EditorOptions } from '../Editor';
 import { Snippet, Comment } from '../types';
 import styles from './styles.css';
 import 'antd/es/spin/style';
+import Cookies from 'universal-cookie';
+import Login from './Login';
 
 interface ViewProps {
   location: {
@@ -21,6 +23,11 @@ const View = ({ location }: ViewProps) => {
   const [loaded, setLoaded] = useState(false);
   const [snippet, setSnippet] = useState<Snippet>();
   const [comments, setComments] = useState<Array<Comment>>([]);
+  console.log("inside src/view/index.tsx");
+  console.log("location is ");
+  console.log(location);
+  console.log("location hash is ");
+  console.log(location.hash);
   const snippetId = location.hash.slice(1);
 
   useEffect(() => {
@@ -64,11 +71,15 @@ const View = ({ location }: ViewProps) => {
     return <NoSnippetFound />;
   }
 
+//Viewing a review does not need a user login/cookie.
+
   return (
+
     <div className={styles.container}>
       <h2 className={styles.heading}>
         {snippet.title}
       </h2>
+
       <div className={styles.info}>
         {statusContainer}
         <div className={styles.tagContainer}>

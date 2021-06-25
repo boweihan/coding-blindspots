@@ -35,6 +35,7 @@ const Review = ({ location }: ReviewProps) => {
   const [snippet, setSnippet] = useState<Snippet>();
   const [comments, setComments] = useState<Array<Comment>>([]);
   const snippetId = location.hash.slice(1);
+ console.log("inside src/Review/index.tsx");
 
   useEffect(() => {
     // todo use Promise.all
