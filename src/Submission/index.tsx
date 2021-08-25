@@ -56,7 +56,7 @@ const Submission = () => {
 
   //Show Login page if not logged in. 
   const cookies = new Cookies();
-  const userCookie = (cookies.get('myCat')); // Pacman
+  const userCookie = (cookies.get('user')); // Pacman
   console.log("in Submission/index.tsx cookie is " + userCookie);
   if (userCookie == null) {
       return (

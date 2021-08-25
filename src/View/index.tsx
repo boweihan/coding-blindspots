@@ -11,7 +11,9 @@ import { Snippet, Comment } from '../types';
 import styles from './styles.css';
 import 'antd/es/spin/style';
 import Cookies from 'universal-cookie';
-import Login from './Login';
+import Logout from './logout';
+import Login from './login';
+import { useLocation } from 'react-router-dom';
 
 interface ViewProps {
   location: {
@@ -29,21 +31,52 @@ const View = ({ location }: ViewProps) => {
   console.log("location hash is ");
   console.log(location.hash);
   const snippetId = location.hash.slice(1);
+ console.log("snippetId is " + snippetId);
 
-  useEffect(() => {
-    // todo use Promise.all
-    RestClient.get(`/snippets/${snippetId}`)
-      .then((snippet) => setSnippet(snippet))
-      .then(() =>
-        //RestClient.get(`/comments/`)
-        RestClient.get(`/snippets/${snippetId}/comments`)
-          .then((comments) => setComments(comments))
-          .then(() => setLoaded(true))
-      )
-      .catch(() => {
-        setLoaded(true);
-      });
-  }, []);
+  //https://www.surajsharma.net/blog/current-url-in-react
+  const mylocation = useLocation();
+
+  if (mylocation.pathname == "/logout") {
+       //Remove cookie and redirect to login page.
+        const cookies = new Cookies();
+        cookies.remove('user');
+        console.log("deleted cookie 'user'"); 
+        return (
+        <div className={styles.container}>
+          <h2 className={styles.heading}>
+          </h2>
+          <Login />
+       </div>
+     )
+    } else if (mylocation.pathname == "/login") {
+        //Ideally we would check if already loggedin and then take to profile page. 
+        const cookies = new Cookies();
+        const userCookie = (cookies.get('user')); // Pacman
+        console.log("deleted cookie 'user'"); 
+        if (userCookie == null) {
+            return (
+            <div className={styles.container}>
+              <h2 className={styles.heading}>
+              </h2>
+              <Login />
+           </div>
+        }
+  }
+
+    useEffect(() => {
+      // todo use Promise.all
+      RestClient.get(`/snippets/${snippetId}`)
+        .then((snippet) => setSnippet(snippet))
+        .then(() =>
+          //RestClient.get(`/comments/`)
+          RestClient.get(`/snippets/${snippetId}/comments`)
+            .then((comments) => setComments(comments))
+            .then(() => setLoaded(true))
+        )
+        .catch(() => {
+          setLoaded(true);
+        });
+    }, []);
 
   const createCommentWidgets = (cm: any) => {
     comments?.forEach((comment) => addCommentLineWidget(cm, comment));
@@ -72,9 +105,7 @@ const View = ({ location }: ViewProps) => {
   }
 
 //Viewing a review does not need a user login/cookie.
-
   return (
-
     <div className={styles.container}>
       <h2 className={styles.heading}>
         {snippet.title}

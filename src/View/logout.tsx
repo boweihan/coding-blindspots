@@ -60,6 +60,7 @@ type Action = { type: 'setUsername', payload: string }
   | { type: 'setIsError', payload: boolean };
 
 const reducer = (state: State, action: Action): State => {
+  console.log("action.type is " + action.type);
   switch (action.type) {
     case 'setUsername': 
       return {
@@ -100,19 +101,9 @@ const reducer = (state: State, action: Action): State => {
 }
 
 
-async function loginUser(credentials : []) {
- return fetch('http://localhost:8080/login', {
-   method: 'POST',
-   headers: {
-     'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(credentials)
- })
-   .then(data => data.json())
-}
 
 
-const Login = () => {
+const Logout = () => {
   const classes = useStyles();
 
 const [cookies, setCookie] = useCookies(["user"]);
@@ -124,7 +115,7 @@ function handleCookie() {
 
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("inside src/view/login.tsx");
+  console.log("inside src/view/logout.tsx");
 
   useEffect(() => {
     if (state.username.trim() && state.password.trim()) {
@@ -140,7 +131,7 @@ function handleCookie() {
     }
   }, [state.username, state.password]);
 
-  const handleLogin = () => {
+  const handleLogout = () => {
     console.log("3 username is " + state.username);
     console.log("4 password is " + state.password);
     //cookies.set("user", "gowtham", { path: "/" }); // setting the cookie
@@ -149,36 +140,23 @@ function handleCookie() {
         username: state.username,
         password: state.password
     };
-    RestClient.post(`/api/v1/token/login`, credentials)
-      .then((tokenresponse) => { 
-           console.log("response from django login server. Good " + tokenresponse.auth_token)
 
-            //This also works.
-            handleCookie();
+    const cookies = new Cookies();
+    //cookies.removeCookie('user');
+    cookies.remove('user');
+    console.log("deleted cookie user"); // Pacman
 
-            //This works fine.
-            const cookies = new Cookies();
-            cookies.set('user', state.username, { path: '/' });
-            console.log(cookies.get('user')); // Pacman
+    //Uncomment this.
+    //dispatch({
+    //    type: 'loginFailed',
+    //    payload: 'Login Failed'
+    //  });
+};
 
-           dispatch({
-             type: 'loginSuccess',
-             payload: 'Login Succeeded'
-           });
-        })
-      .catch(() => {
-        //setLoaded(true);
-        console.log("failedddddd.." );
-      dispatch({
-        type: 'loginFailed',
-        payload: 'Login Failed'
-      });
-      });
-  };
-
+handleLogout();
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.keyCode === 13 || event.which === 13) {
-      state.isButtonDisabled || handleLogin();
+      state.isButtonDisabled || handleLogout();
     }
   };
 
@@ -234,7 +212,7 @@ function handleCookie() {
             size="large"
             color="secondary"
             className={classes.loginBtn}
-            onClick={handleLogin}
+            onClick={handleLogout}
             disabled={state.isButtonDisabled}>
             Login
           </Button>
@@ -244,4 +222,4 @@ function handleCookie() {
   );
 }
 
-export default Login;
+export default Logout;
