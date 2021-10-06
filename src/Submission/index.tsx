@@ -123,11 +123,11 @@ const Submission = () => {
             </div>
             <div className={styles.editorContainerInput}>
               <span className={styles.secondaryHeading}>
-                Position
+              What position are you interviewing for?
               </span>
               <Input
                 onChange={(position) => setPosition(position.currentTarget.value)}
-                placeholder="Which position are you interviewing for?"
+                placeholder="e.g. Junior, Senior, Principal …"
                 type="textarea"
               />
             </div>

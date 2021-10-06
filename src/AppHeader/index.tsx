@@ -125,7 +125,6 @@ console.log("inside src/AppHeader/index.tsx");
         </Menu.Item>
         <Menu.Item key="5" className="menu-login">
           <Link to="/submit-mail">
-            <LoginOutlined />
             Submit Mail
           </Link>
         </Menu.Item>
