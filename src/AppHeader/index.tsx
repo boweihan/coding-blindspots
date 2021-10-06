@@ -77,6 +77,11 @@ console.log("inside src/AppHeader/index.tsx");
                 Login/Signup
               </Link>
             </Menu.Item>
+            <Menu.Item key="5" className="menu-login">
+          <Link to="/submit-mail">
+            Submit Mail
+          </Link>
+        </Menu.Item>
           </Menu>
         </>
       )
@@ -116,6 +121,12 @@ console.log("inside src/AppHeader/index.tsx");
            { userCookie + " " }
             <LoginOutlined />
             Logout
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="5" className="menu-login">
+          <Link to="/submit-mail">
+            <LoginOutlined />
+            Submit Mail
           </Link>
         </Menu.Item>
       </Menu>

@@ -10,7 +10,10 @@ import 'antd/es/input/style';
 import 'antd/es/modal/style';
 import 'antd/es/message/style';
 import Cookies from 'universal-cookie';
-import Login from '../View/Login';
+import Login from '../View/login';
+
+//changed an textbox input to TextArea
+const { TextArea } = Input;
 
 const Submission = () => {
   const [text, setText] = useState('');
@@ -87,9 +90,9 @@ const Submission = () => {
               <span className={styles.secondaryHeading}>
                 Description
               </span>
-              <Input
+              <TextArea
                 onChange={(description) => setPosition(description.currentTarget.value)}
-                placeholder="Describe your question here"
+                placeholder="Describe your question here" rows={5}
               />
             </div>
             <div className={styles.editor}>

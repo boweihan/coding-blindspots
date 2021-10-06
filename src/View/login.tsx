@@ -10,6 +10,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 import { useCookies } from "react-cookie";
 import Cookies from 'universal-cookie';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -100,20 +101,24 @@ const reducer = (state: State, action: Action): State => {
 }
 
 
+
 async function loginUser(credentials : []) {
- return fetch('http://localhost:8080/login', {
-   method: 'POST',
-   headers: {
-     'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(credentials)
- })
-   .then(data => data.json())
+  return fetch('http://localhost:8080/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+  .then(data => data.json())
 }
 
 
 const Login = () => {
   const classes = useStyles();
+  let history = useHistory();
+  const goToPreviousPath = () => {
+    history.go(0)}
 
 const [cookies, setCookie] = useCookies(["user"]);
 function handleCookie() {
@@ -160,12 +165,14 @@ function handleCookie() {
             const cookies = new Cookies();
             cookies.set('user', state.username, { path: '/' });
             console.log(cookies.get('user')); // Pacman
-
-           dispatch({
-             type: 'loginSuccess',
-             payload: 'Login Succeeded'
-           });
-        })
+            
+            dispatch({
+              type: 'loginSuccess',
+              payload: 'Login Succeeded'
+            })
+            
+            goToPreviousPath()
+          })
       .catch(() => {
         //setLoaded(true);
         console.log("failedddddd.." );

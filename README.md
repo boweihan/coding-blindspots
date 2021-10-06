@@ -50,3 +50,9 @@ Screenshots
 
 
 
+gohoan dad says 
+express.js, next.js 
+node lib/
+npm run build-prod
+npm run start-prod
+

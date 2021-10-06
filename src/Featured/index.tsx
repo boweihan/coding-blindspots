@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Tooltip, List, Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import PageLoad from '../PageLoad';
@@ -10,6 +10,8 @@ import 'antd/es/list/style';
 import 'antd/es/card/style';
 import 'antd/es/button/style';
 import 'antd/es/tooltip/style';
+
+
 
 const Featured = () => {
   const [loaded, setLoaded] = useState(false);
@@ -59,7 +61,7 @@ const Featured = () => {
             >
               <Link
                 to={{
-                  pathname: '/view',
+                  pathname: '/review',
                   hash: `#${snippet.id}`,
                 }}
               >

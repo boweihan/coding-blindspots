@@ -4,3 +4,13 @@
   height: 100%;
   overflow: hidden;
 }
+
+/* adjust width of editor to 50% */
+:global ._3RpRzn6ol7oFMRMrWdw3Iu {
+    width: 50%;
+}
+
+/* set a break in between long words and continue on next line */
+:global .CodeMirror-linewidget {
+    overflow-wrap:break-word  
+}

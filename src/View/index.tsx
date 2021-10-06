@@ -60,6 +60,7 @@ const View = ({ location }: ViewProps) => {
               </h2>
               <Login />
            </div>
+            )
         }
   }
 
@@ -86,8 +87,8 @@ const View = ({ location }: ViewProps) => {
     !comments ||
     (comments.length <= 0 ? (
       <div className={styles.statusContainer}>
-        <Spin size="small" />
-        <span className={styles.loadingText}>Review pending</span>
+        {/* <Spin size="small" /> :commented out spinning circle*/}
+        <span className={styles.loadingText}>No reviews yet. Add a comment and be the first to review!</span>
       </div>
     ) : (
       <div className={styles.statusContainer}>
