@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Tooltip, List, Card, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import PageLoad from '../PageLoad';
@@ -11,9 +11,12 @@ import 'antd/es/card/style';
 import 'antd/es/button/style';
 import 'antd/es/tooltip/style';
 
+
+
 const Featured = () => {
   const [loaded, setLoaded] = useState(false);
   const [snippets, setSnippets] = useState<Array<Snippet>>([]);
+  console.log("inside src/Featured/index.tsx");
 
   useEffect(() => {
     RestClient.get('/snippets/')
@@ -22,7 +25,7 @@ const Featured = () => {
   }, []);
 
   if (!loaded) {
-    return <PageLoad text="Loading Snippets..." />;
+    return <PageLoad text="Loading Snippets…" />;
   }
   return (
     <div className={styles.container}>
@@ -33,6 +36,7 @@ const Featured = () => {
           md: 2,
           lg: 3,
           xl: 4,
+          xxl: 4
         }}
         dataSource={snippets}
         renderItem={(snippet) => (
@@ -40,6 +44,10 @@ const Featured = () => {
             <Card
               title={snippet.title || 'Snippet'}
               extra={snippet.language}
+              hoverable={false}
+              bodyStyle={{
+                padding: '12px 24px 0 24px'
+              }}
               actions={[
                 <Link
                   to={{
@@ -47,17 +55,17 @@ const Featured = () => {
                     hash: `#${snippet.id}`,
                   }}
                 >
-                  <Button>Review</Button>
+                  Show review
                 </Link>,
               ]}
             >
               <Link
                 to={{
-                  pathname: '/view',
+                  pathname: '/review',
                   hash: `#${snippet.id}`,
                 }}
               >
-                <Tooltip title="View Snippet">
+                <Tooltip title="View Snippet 👁">
                   <div className={styles.snippetContainer}>
                     <div className={styles.snippet}>
                       {parseIfJson(snippet.text)}

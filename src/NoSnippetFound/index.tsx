@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
 
+  console.log("inside src/NoSnippetFound/index.tsx");
 const NoSnippetFound = () => (
   <div className={styles.container}>
     <b>Sorry, this snippet doesn't seem to exist.</b>

@@ -76,6 +76,7 @@ const config = {
             options: {
               modifyVars: {
                 'layout-header-height': '48px',
+                'danger': '#e2574c'
               },
               javascriptEnabled: true,
             },

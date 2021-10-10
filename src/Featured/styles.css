@@ -1,26 +1,20 @@
 .container {
-  margin: 24px;
-  padding: 24px;
+  padding: 48px;
+  min-height: 100vh;
 }
 
 .snippet {
   white-space: pre-wrap;
   position: absolute;
-  width: 80vw;
+  width: 100%;
   color: black;
   font-size: 12px;
+  overflow: hidden;
 }
 
 .snippetContainer {
-  padding: 10px;
-  border: 1px solid black;
-  height: 150px;
+  /* padding: 10px; */
+  height: 250px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.snippetContainer:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
