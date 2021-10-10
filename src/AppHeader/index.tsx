@@ -4,6 +4,7 @@ import {
   PlusCircleFilled,
   StarFilled,
   LoginOutlined,
+  LogoutOutlined,
   QuestionCircleFilled
 } from '@ant-design/icons';
 import { includes } from 'lodash';
@@ -11,6 +12,8 @@ import { Menu, Button } from 'antd';
 import Media from 'react-media';
 import styles from './styles.css';
 import 'antd/es/menu/style';
+import Cookies from 'universal-cookie';
+import Login from '../View/Login';
 
 interface AppHeader {
   location: {
@@ -34,6 +37,56 @@ const getDefaultSelectedKeys = (pathname: string): Array<string> => {
 };
 
 const AppHeader = ({ location: { pathname } }: AppHeader) => {
+console.log("inside src/AppHeader/index.tsx");
+  const cookies = new Cookies();
+  const userCookie = (cookies.get('user')); // Pacman
+  console.log("in Submission/index.tsx cookie is " + userCookie);
+  if (userCookie == null) {
+      return (
+        <>
+          <a href="/">
+            <h1 className={styles.logo}>CodingBlindspots</h1>
+          </a>
+      
+          <Menu
+            theme="light"
+            mode="horizontal"
+            defaultSelectedKeys={getDefaultSelectedKeys(pathname)}
+          >
+            <Menu.Item key="1">
+              <Link to="/public">
+                <StarFilled />
+                Featured reviews
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="/about">
+                <QuestionCircleFilled />
+                How it works
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="3" className="menu-create">
+              <Link to="/create">
+                <PlusCircleFilled />
+                New submission
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="4" className="menu-login">
+              <Link to="/login">
+                <LoginOutlined />
+                Login/Signup
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="5" className="menu-login">
+          <Link to="/submit-mail">
+            Submit Mail
+          </Link>
+        </Menu.Item>
+          </Menu>
+        </>
+      )
+  }
+
   return (
     <>
       <a href="/">
@@ -64,9 +117,15 @@ const AppHeader = ({ location: { pathname } }: AppHeader) => {
           </Link>
         </Menu.Item>
         <Menu.Item key="4" className="menu-login">
-          <Link to="/login">
+          <Link to="/logout">
+           { userCookie + " " }
             <LoginOutlined />
-            Login or Signup
+            Logout
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="5" className="menu-login">
+          <Link to="/submit-mail">
+            Submit Mail
           </Link>
         </Menu.Item>
       </Menu>

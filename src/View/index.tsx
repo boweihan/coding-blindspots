@@ -10,6 +10,10 @@ import { Editor, EditorOptions } from '../Editor';
 import { Snippet, Comment } from '../types';
 import styles from './styles.css';
 import 'antd/es/spin/style';
+import Cookies from 'universal-cookie';
+import Logout from './logout';
+import Login from './login';
+import { useLocation } from 'react-router-dom';
 
 interface ViewProps {
   location: {
@@ -21,22 +25,59 @@ const View = ({ location }: ViewProps) => {
   const [loaded, setLoaded] = useState(false);
   const [snippet, setSnippet] = useState<Snippet>();
   const [comments, setComments] = useState<Array<Comment>>([]);
+  console.log("inside src/view/index.tsx");
+  console.log("location is ");
+  console.log(location);
+  console.log("location hash is ");
+  console.log(location.hash);
   const snippetId = location.hash.slice(1);
+ console.log("snippetId is " + snippetId);
 
-  useEffect(() => {
-    // todo use Promise.all
-    RestClient.get(`/snippets/${snippetId}`)
-      .then((snippet) => setSnippet(snippet))
-      .then(() =>
-        //RestClient.get(`/comments/`)
-        RestClient.get(`/snippets/${snippetId}/comments`)
-          .then((comments) => setComments(comments))
-          .then(() => setLoaded(true))
-      )
-      .catch(() => {
-        setLoaded(true);
-      });
-  }, []);
+  //https://www.surajsharma.net/blog/current-url-in-react
+  const mylocation = useLocation();
+
+  if (mylocation.pathname == "/logout") {
+       //Remove cookie and redirect to login page.
+        const cookies = new Cookies();
+        cookies.remove('user');
+        console.log("deleted cookie 'user'"); 
+        return (
+        <div className={styles.container}>
+          <h2 className={styles.heading}>
+          </h2>
+          <Login />
+       </div>
+     )
+    } else if (mylocation.pathname == "/login") {
+        //Ideally we would check if already loggedin and then take to profile page. 
+        const cookies = new Cookies();
+        const userCookie = (cookies.get('user')); // Pacman
+        console.log("deleted cookie 'user'"); 
+        if (userCookie == null) {
+            return (
+            <div className={styles.container}>
+              <h2 className={styles.heading}>
+              </h2>
+              <Login />
+           </div>
+            )
+        }
+  }
+
+    useEffect(() => {
+      // todo use Promise.all
+      RestClient.get(`/snippets/${snippetId}`)
+        .then((snippet) => setSnippet(snippet))
+        .then(() =>
+          //RestClient.get(`/comments/`)
+          RestClient.get(`/snippets/${snippetId}/comments`)
+            .then((comments) => setComments(comments))
+            .then(() => setLoaded(true))
+        )
+        .catch(() => {
+          setLoaded(true);
+        });
+    }, []);
 
   const createCommentWidgets = (cm: any) => {
     comments?.forEach((comment) => addCommentLineWidget(cm, comment));
@@ -46,8 +87,8 @@ const View = ({ location }: ViewProps) => {
     !comments ||
     (comments.length <= 0 ? (
       <div className={styles.statusContainer}>
-        <Spin size="small" />
-        <span className={styles.loadingText}>Review pending</span>
+        {/* <Spin size="small" /> :commented out spinning circle*/}
+        <span className={styles.loadingText}>No reviews yet. Add a comment and be the first to review!</span>
       </div>
     ) : (
       <div className={styles.statusContainer}>
@@ -64,11 +105,13 @@ const View = ({ location }: ViewProps) => {
     return <NoSnippetFound />;
   }
 
+//Viewing a review does not need a user login/cookie.
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>
         {snippet.title}
       </h2>
+
       <div className={styles.info}>
         {statusContainer}
         <div className={styles.tagContainer}>

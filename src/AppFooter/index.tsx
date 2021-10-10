@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
 
+console.log("inside src/AppFooter/index.tsx");
 const AppFooter = () => (
   <div className={styles.footer}>
     <div className={styles.footerColumn}>

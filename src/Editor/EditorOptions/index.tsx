@@ -11,7 +11,8 @@ interface Props {
 }
 
 const languageToText = {
-  clike: 'Java',
+  clike: 'C/C++ or other languages',
+  java: 'Java',
   python: 'Python',
   javascript: 'JavaScript',
   ruby: 'Ruby',
@@ -21,6 +22,7 @@ const languageToText = {
   php: 'PHP',
 };
 
+  console.log("inside src/Editor/EditorOptions/index.tsx");
 const EditorOptions = ({ language, setLanguage, enabled }: Props) => (
   <Select
     defaultValue={language}

@@ -9,6 +9,11 @@ import 'antd/es/button/style';
 import 'antd/es/input/style';
 import 'antd/es/modal/style';
 import 'antd/es/message/style';
+import Cookies from 'universal-cookie';
+import Login from '../View/login';
+
+//changed an textbox input to TextArea
+const { TextArea } = Input;
 
 const Submission = () => {
   const [text, setText] = useState('');
@@ -17,6 +22,7 @@ const Submission = () => {
   const [language, setLanguage] = useState<Language>(Language.JAVASCRIPT);
   const [submitting, setSubmitting] = useState(false);
 
+  console.log("inside src/Submission/index.tsx");
   const handleSubmission = (payload: Snippet) => {
     const { title, text } = payload;
     let parsedText = JSON.parse(text);
@@ -50,6 +56,21 @@ const Submission = () => {
       .catch(() => setSubmitting(false));
   };
 
+
+  //Show Login page if not logged in. 
+  const cookies = new Cookies();
+  const userCookie = (cookies.get('user')); // Pacman
+  console.log("in Submission/index.tsx cookie is " + userCookie);
+  if (userCookie == null) {
+      return (
+        <div className={styles.container}>
+          <h2 className={styles.heading}>
+          </h2>
+          <Login />
+       </div>
+     )
+   }
+
   return (
     <>
       <div className={styles.container}>
@@ -69,9 +90,9 @@ const Submission = () => {
               <span className={styles.secondaryHeading}>
                 Description
               </span>
-              <Input
+              <TextArea
                 onChange={(description) => setPosition(description.currentTarget.value)}
-                placeholder="Describe your question here"
+                placeholder="Describe your question here" rows={5}
               />
             </div>
             <div className={styles.editor}>

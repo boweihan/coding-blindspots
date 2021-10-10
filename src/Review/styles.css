@@ -4,6 +4,12 @@
   min-height: 100vh;
 }
 
+.modalContainer {
+  margin-top: -14%;
+  margin-right: -7%;
+
+}
+
 .heading {
   font-size: 20px;
 }

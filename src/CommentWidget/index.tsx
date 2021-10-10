@@ -17,6 +17,7 @@ interface ViewProps {
 }
 
 const CommentWidget = ({ comment }: ViewProps) => {
+console.log("inside src/CommonWidget/index.tsx");
   return (
     <div className={styles.commentContainer}>
       <ReactMDE
