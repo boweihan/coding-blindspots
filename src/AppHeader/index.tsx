@@ -5,7 +5,8 @@ import {
   StarFilled,
   LoginOutlined,
   LogoutOutlined,
-  QuestionCircleFilled
+  QuestionCircleFilled,
+  MailOutlined
 } from '@ant-design/icons';
 import { includes } from 'lodash';
 import { Menu, Button } from 'antd';
@@ -13,7 +14,6 @@ import Media from 'react-media';
 import styles from './styles.css';
 import 'antd/es/menu/style';
 import Cookies from 'universal-cookie';
-import Login from '../View/Login';
 
 interface AppHeader {
   location: {
@@ -31,6 +31,8 @@ const getDefaultSelectedKeys = (pathname: string): Array<string> => {
     defaultSelectedKeys.push('3');
   } else if (includes(pathname, 'login')) {
     defaultSelectedKeys.push('4');
+  } else if (includes(pathname, 'waitlist')) {
+    defaultSelectedKeys.push('5');
   }
 
   return defaultSelectedKeys;
@@ -77,9 +79,10 @@ console.log("inside src/AppHeader/index.tsx");
                 Login/Signup
               </Link>
             </Menu.Item>
-            <Menu.Item key="5" className="menu-login">
-          <Link to="/submit-mail">
-            Submit Mail
+            <Menu.Item key="5" className="menu-waitlist">
+          <Link to="/waitlist">
+          <MailOutlined />
+            Waitlist
           </Link>
         </Menu.Item>
           </Menu>
@@ -119,13 +122,14 @@ console.log("inside src/AppHeader/index.tsx");
         <Menu.Item key="4" className="menu-login">
           <Link to="/logout">
            { userCookie + " " }
-            <LoginOutlined />
+            <LogoutOutlined />
             Logout
           </Link>
         </Menu.Item>
-        <Menu.Item key="5" className="menu-login">
-          <Link to="/submit-mail">
-            Submit Mail
+        <Menu.Item key="5" className="waitlist">
+          <Link to="/waitlist">
+          <MailOutlined />
+            Waitlist
           </Link>
         </Menu.Item>
       </Menu>

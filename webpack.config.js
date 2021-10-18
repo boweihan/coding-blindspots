@@ -143,6 +143,7 @@ module.exports = (env, argv) => {
     // Cannot use 'contenthash' when hot reloading is enabled.
     config.output.filename = '[name].[hash].js';
   }
+  
 
   return config;
 };

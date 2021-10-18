@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'CodeMirror-scroll': string;
+  'MuiCardHeader-title': string;
   'container': string;
   'editor': string;
   'editorContainer': string;
