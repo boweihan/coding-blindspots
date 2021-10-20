@@ -54,7 +54,6 @@ console.log("inside src/App.tsx");
                 <Route path="/public" component={Featured} />
                 <Route path="/create" component={Submission} />
                 <Route path="/review" component={Review} />
-                <Route path="/view" component={View} />
                 <Route path="/waitlist" component={Waitlist} />
                 <Route path="/about" component={About} /> 
                 <Route path="/login" component={Login} />

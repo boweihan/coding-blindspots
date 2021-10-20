@@ -57,7 +57,7 @@ const handleCancel = () => {
   const [snippet, setSnippet] = useState<Snippet>();
   const [comments, setComments] = useState<Array<Comment>>([]);
   const snippetId = location.hash.slice(1);
- console.log("inside src/Review/index.tsx");
+ console.log("inside src/Review/index.tsx", snippetId, location.hash);
 
   useEffect(() => {
     // todo use Promise.all

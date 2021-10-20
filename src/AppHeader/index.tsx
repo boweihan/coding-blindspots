@@ -10,10 +10,10 @@ import {
 } from '@ant-design/icons';
 import { includes } from 'lodash';
 import { Menu, Button } from 'antd';
-import Media from 'react-media';
 import styles from './styles.css';
 import 'antd/es/menu/style';
 import Cookies from 'universal-cookie';
+import { Searchbar } from '../Searchbar';
 
 interface AppHeader {
   location: {
@@ -73,6 +73,9 @@ console.log("inside src/AppHeader/index.tsx");
                 New submission
               </Link>
             </Menu.Item>
+            <Menu.Item key="">
+        <Searchbar/>
+        </Menu.Item>
             <Menu.Item key="4" className="menu-login">
               <Link to="/login">
                 <LoginOutlined />
@@ -101,6 +104,7 @@ console.log("inside src/AppHeader/index.tsx");
         mode="horizontal"
         defaultSelectedKeys={getDefaultSelectedKeys(pathname)}
       >
+
         <Menu.Item key="1">
           <Link to="/public">
             <StarFilled />
@@ -118,6 +122,9 @@ console.log("inside src/AppHeader/index.tsx");
             <PlusCircleFilled />
             New submission
           </Link>
+        </Menu.Item>
+        <Menu.Item key="">
+        <Searchbar/>
         </Menu.Item>
         <Menu.Item key="4" className="menu-login">
           <Link to="/logout">
