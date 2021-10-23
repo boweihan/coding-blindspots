@@ -13,7 +13,6 @@ import 'antd/es/message/style';
 import Infographic from '../assets/infographic.png';
 
 const About = () => {
-console.log("inside src/About/index.tsx");
   return (
     <>
       <div className={styles.container}>
@@ -22,6 +21,21 @@ console.log("inside src/About/index.tsx");
           src={Infographic}
           alt="CodingBlindspots infographic"
         />
+              <div> Companies rarely give feedback on coding interviews. On Interviewblindspots, post a coding question and your solution, experienced industry professionals will look at your code and provide feedback, explaining what went right and what went wrong. Improve your interview performance and increase your compensation.</div> 
+
+
+<div> Built by a distrubuted team who have never met in person.  
+            <ul> 
+               <li><a href="https://github.com/mrraghur"> https://github.com/mrraghur/ </a> </li>
+               <li><a href="https://github.com/boweihan"> https://github.com/boweihan </a></li>
+               <li><a href="https://github.com/flozia"> https://github.com/flozia </a></li>
+               <li><a href="https://github.com/Muhammad-Tahir-S"> https://github.com/Muhammad-Tahir-S </a></li>
+            </ul> 
+        </div> 
+
+        
+
+
       </div>
     </>
   );

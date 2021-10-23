@@ -184,7 +184,7 @@ const handleCancel = () => {
    return (
      <div className={styles.container}>
       <h2 className={styles.heading}>{snippet.title}</h2>
-      <p>Review Page</p>
+      <p>Click anywhere on the code and add your review/comments. </p>
       <div>
         <EditorOptions language={snippet.language} />
         <div className={styles.editor}>

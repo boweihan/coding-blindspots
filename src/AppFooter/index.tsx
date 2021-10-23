@@ -14,9 +14,6 @@ const AppFooter = () => (
           <a href="/about">Blog</a>
         </li>
         <li>
-          <a href="/about">Team</a>
-        </li>
-        <li>
           <a href="/about">Interview</a>
         </li>
         <li>
@@ -33,6 +30,9 @@ const AppFooter = () => (
         </li>
         <li>
           <a href="/public">Reviews</a>
+        </li>
+        <li>
+          <a href="/public">Embed reviews on your site</a>
         </li>
       </ul>
     </div>

@@ -8,7 +8,7 @@ const NoSnippetFound = () => (
     <br />
     <br />
     If you just created this snippet, try visiting this page again in a few
-    minutes.
+    minutes. Meanwhile, you can visit http://localhost:8080/public to see browse through all code reviews and become better at interviewing.
   </div>
 );
 
