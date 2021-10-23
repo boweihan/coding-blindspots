@@ -9,7 +9,7 @@ type Props = {
     setShowMobileWarning: (val: boolean) => void;
 }
 
-const MobileWarning = ({setShowMobileWarning = () => {}}: Props) => {
+export const MobileWarning = ({setShowMobileWarning = () => {}}: Props) => {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const showModal = () => {
@@ -42,11 +42,10 @@ const MobileWarning = ({setShowMobileWarning = () => {}}: Props) => {
            className = {styles.warning} 
            alt="warning sign" />
           </div>
-        <p className = {styles.text}>This site is not optimized for mobile. Are you sure you want to proceed?</p>
+        <p className = {styles.text}>CodingBlindspots is not optimized for mobile. Reviewing code on mobile is tough. Are you sure you want to proceed?</p>
 
       </Modal> 
       </div>
   );
 };
 
-export default MobileWarning;

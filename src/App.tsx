@@ -14,10 +14,10 @@ import About from './About';
 import View from './View';
 import Login from './View/login';
 import Logout from './View/logout';
-import SubmitMail from './View/submitMail';
 import styles from './styles.css';
 const { Header, Content, Footer } = Layout;
-import MobileWarning from './MobileWarning';
+import { Waitlist } from './View/Waitlist';
+import { MobileWarning } from './MobileWarning/index';
 
 
 const App = () => {
@@ -35,7 +35,7 @@ console.log("inside src/App.tsx");
     { if (showMobileWarning == true) {
 
       return(
-      <MobileWarning 
+      <MobileWarning
       setShowMobileWarning={setShowMobileWarning}
       />
       )} 
@@ -54,8 +54,7 @@ console.log("inside src/App.tsx");
                 <Route path="/public" component={Featured} />
                 <Route path="/create" component={Submission} />
                 <Route path="/review" component={Review} />
-                <Route path="/view" component={View} />
-                <Route path="/submit-mail" component={SubmitMail} />
+                <Route path="/waitlist" component={Waitlist} />
                 <Route path="/about" component={About} /> 
                 <Route path="/login" component={Login} />
                 <Route path="/logout" component={Logout} />

@@ -100,36 +100,29 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
-
-
-async function loginUser(credentials : []) {
-  return fetch('http://localhost:8080/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-  .then(data => data.json())
-}
-
-
 const Login = () => {
   const classes = useStyles();
+
   let history = useHistory();
   const goToPreviousPath = () => {
-    history.go(0)}
+    const pathname = window.location.pathname;
+    if (pathname==='/login') {
+      history.go(-1)
+    }
+    else {
+      history.go(0)
+    }
+  }
 
-const [cookies, setCookie] = useCookies(["user"]);
-function handleCookie() {
- console.log("about to set cookie");
-  setCookie("user", "gowtham", {      path: "/"    });  
- console.log("successfully set cookie");
-}
-
+// const [cookies, setCookie] = useCookies(["user"]);
+// function handleCookie() {
+//  console.log("about to set cookie");
+//   setCookie("user", "gowtham", {      path: "/"    });  
+//  console.log("successfully set cookie");
+// }
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("inside src/view/login.tsx");
+  // console.log("inside src/view/login.tsx");
 
   useEffect(() => {
     if (state.username.trim() && state.password.trim()) {
@@ -159,7 +152,7 @@ function handleCookie() {
            console.log("response from django login server. Good " + tokenresponse.auth_token)
 
             //This also works.
-            handleCookie();
+            // handleCookie();
 
             //This works fine.
             const cookies = new Cookies();
