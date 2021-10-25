@@ -1,3 +1,3 @@
-const baseUrl = 'http://localhost:8001/displaycode';
+const baseUrl = 'https://backend.interviewblindspots.com/displaycode';
 
 export default { baseUrl };

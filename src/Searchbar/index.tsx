@@ -58,9 +58,10 @@ type State = {
       var credential= {
           searchInput: state.searchInput,
       };
-      RestClient.post(`/search/`, credential)
+      var searchUrl = "/search/" + "?q=" + state.searchInput;
+      RestClient.get(searchUrl)
         .then((response) => { 
-             console.log("response from django waitlist server: " + JSON.stringify(response))
+             console.log("response from django search server: " + JSON.stringify(response))
               
               dispatch({
                 type: 'submitSearchInputSuccess',
