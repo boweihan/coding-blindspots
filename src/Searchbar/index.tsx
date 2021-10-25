@@ -2,6 +2,7 @@ import React, { useReducer  } from 'react';
 import { Input } from 'antd';
 import styles from './styles.css';
 import RestClient from '../shared/rest';
+import { useState } from 'react';
 
 const { Search } = Input;
 
@@ -9,18 +10,21 @@ const { Search } = Input;
 type State = {
     searchInput: string
     isError: boolean
+    isSearched: boolean
   };
   
   const initialState:State = {
     searchInput: '',
-    isError: false
+    isError: false,
+    isSearched: false
   };
   
   
   type Action = { type: 'submitSearchInput', payload: string }
     | { type: 'submitSearchInputSuccess', payload: string }
     | { type: 'submitSearchInputFailed', payload: string }
-    | { type: 'setIsError', payload: boolean };
+    | { type: 'setIsError', payload: boolean }
+    ;
   
   const reducer = (state: State, action: Action): State => {
     switch (action.type) {
@@ -50,6 +54,7 @@ type State = {
   }
   
   export const Searchbar = () => {
+    const [isSearched, setIsSearched] = useState<boolean>(false)
   
     const [state, dispatch] = useReducer(reducer, initialState);
     console.log("inside src/Searchbar/input.tsx");
@@ -67,7 +72,7 @@ type State = {
                 type: 'submitSearchInputSuccess',
                 payload: 'Submitted!'
               })
-            
+              setIsSearched(true)
             })
         .catch(() => {
           console.log("failed" );
