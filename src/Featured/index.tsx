@@ -10,23 +10,32 @@ import 'antd/es/list/style';
 import 'antd/es/card/style';
 import 'antd/es/button/style';
 import 'antd/es/tooltip/style';
-
-
+import { useContext } from 'react';
+import { store } from '../store';
 
 const Featured = () => {
+  const storeContext = useContext(store);
+  const c = storeContext.snippets;
+  console.log(c, 'CHECK');
   const [loaded, setLoaded] = useState(false);
-  const [snippets, setSnippets] = useState<Array<Snippet>>([]);
-  console.log("inside src/Featured/index.tsx");
+  // const [snippets, setSnippets] = useState<Array<Snippet>>([]);
+  console.log('inside src/Featured/index.tsx');
 
   useEffect(() => {
     RestClient.get('/snippets/')
-      .then((snippets) => setSnippets(snippets))
+      .then((snippets) =>
+        c.dispatch({ type: 'SET_SNIPPETS', payload: {snippets} })
+      )
+      // .then((snippets) => setSnippets(snippets))
       .then(() => setLoaded(true));
   }, []);
 
   if (!loaded) {
     return <PageLoad text="Loading Snippets…" />;
   }
+
+  const snippets = c.state || [];
+  console.log(snippets, "SNIPPSS")
   return (
     <div className={styles.container}>
       <List
@@ -36,17 +45,17 @@ const Featured = () => {
           md: 2,
           lg: 3,
           xl: 4,
-          xxl: 4
+          xxl: 4,
         }}
-        dataSource={snippets}
-        renderItem={(snippet) => (
+        dataSource={snippets?.snippets || []}
+        renderItem={(snippet: Snippet) => (
           <List.Item>
             <Card
               title={snippet.title || 'Snippet'}
               extra={snippet.language}
               hoverable={false}
               bodyStyle={{
-                padding: '12px 24px 0 24px'
+                padding: '12px 24px 0 24px',
               }}
               actions={[
                 <Link

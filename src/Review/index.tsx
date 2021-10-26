@@ -71,7 +71,7 @@ const handleCancel = () => {
           .catch(() => {
             setLoaded(true);
           });
-          showModal();
+          // showModal();
   }, []);
 
   const createCommentWidgets = (cm: any) => {
@@ -167,6 +167,21 @@ const handleCancel = () => {
   if (userCookie == null) {
 
     return (
+      <div className={styles.container}>
+       <h2 className={styles.heading}>{snippet.title}</h2>
+       <p>Click anywhere on the code and add your review/comments. </p>
+       <div>
+         <EditorOptions language={snippet.language} />
+         <div className={styles.editor}>
+           <Editor
+             key={JSON.stringify(comments)}
+             text={parseIfJson(snippet.text)}
+             language={snippet.language}
+             onCursor={showModal}
+             // setTimeout required to avoid JS Execution race condition with CodeMirror
+             onMount={(cm: any) => setTimeout(() => createCommentWidgets(cm), 0)}
+             />
+         </div>
        <div>
         <Modal visible={isModalVisible} 
         onCancel={handleCancel}
@@ -178,7 +193,11 @@ const handleCancel = () => {
        </div>
         </Modal>
           </div>
-   )
+       </div>
+     </div>
+   );
+  //   (
+  //  )
    }
  else{
    return (

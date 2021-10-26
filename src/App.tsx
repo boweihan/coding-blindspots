@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { hot } from 'react-hot-loader/root';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import classNames from 'classnames';
 import { StateProvider } from './store';
 import { Layout } from 'antd';
@@ -11,14 +11,12 @@ import Submission from './Submission';
 import Featured from './Featured';
 import Review from './Review';
 import About from './About';
-import View from './View';
 import Login from './View/login';
 import Logout from './View/logout';
 import styles from './styles.css';
 const { Header, Content, Footer } = Layout;
-import { Waitlist } from './View/Waitlist';
 import { MobileWarning } from './MobileWarning/index';
-
+import { Waitlist } from './View/Waitlist';
 
 const App = () => {
   const [showMobileWarning, setShowMobileWarning] = useState<boolean>(false)
@@ -33,7 +31,6 @@ useEffect(() => {
 console.log("inside src/App.tsx");
 
     { if (showMobileWarning == true) {
-
       return(
       <MobileWarning
       setShowMobileWarning={setShowMobileWarning}
@@ -47,7 +44,7 @@ console.log("inside src/App.tsx");
         <Router>
           <Layout className={classNames('Layout', styles.layout)}>
             <Header>
-              <AppHeader />
+              <AppHeader  />
             </Header>
             <Content className={styles.content}>
               <Switch>
@@ -58,6 +55,7 @@ console.log("inside src/App.tsx");
                 <Route path="/about" component={About} /> 
                 <Route path="/login" component={Login} />
                 <Route path="/logout" component={Logout} />
+                <Route path="sitemap.xml" />
                 <Route path="*" component={Featured} />
               </Switch>
             </Content>
