@@ -18,3 +18,8 @@
   overflow: hidden;
   position: relative;
 }
+
+.languagesCount {
+  display: flex;
+  margin-bottom: 15px;
+}

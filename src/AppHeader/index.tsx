@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import {
   PlusCircleFilled,
@@ -19,12 +19,8 @@ interface AppHeader {
   location: {
     pathname: string;
   };
-  // setIsSearched: (val: boolean) => void;
   
 }
-
-// type Props = {
-// }
 
 const getDefaultSelectedKeys = (pathname: string): Array<string> => {
   let defaultSelectedKeys: any = [];
@@ -45,7 +41,7 @@ const getDefaultSelectedKeys = (pathname: string): Array<string> => {
 
 const AppHeader = ({ location: { pathname } }: AppHeader) => {
 
-console.log("inside src/AppHeader/index.tsx");
+console.log("inside src/AppHeader/index.tsx", pathname);
   const cookies = new Cookies();
   const userCookie = (cookies.get('user')); // Pacman
   console.log("in Submission/index.tsx cookie is " + userCookie);
@@ -130,7 +126,7 @@ console.log("inside src/AppHeader/index.tsx");
           </Link>
         </Menu.Item>
         <Menu.Item key="">
-        <Searchbar />
+        <Searchbar/>
         </Menu.Item>
         <Menu.Item key="4" className="menu-login">
           <Link to="/logout">

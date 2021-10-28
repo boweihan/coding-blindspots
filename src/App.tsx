@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { hot } from 'react-hot-loader/root';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import classNames from 'classnames';
 import { StateProvider } from './store';
 import { Layout } from 'antd';

@@ -1,22 +1,18 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { Input } from 'antd';
 import styles from './styles.css';
-import RestClient from '../shared/rest';
-import { useState } from 'react';
-import { store } from '../store';
+import { useHistory } from 'react-router-dom';
 
 const { Search } = Input;
 
 type State = {
   searchInput: string;
   isError: boolean;
-  isSearched: boolean;
 };
 
 const initialState: State = {
   searchInput: '',
   isError: false,
-  isSearched: false,
 };
 
 type Action =
@@ -53,55 +49,53 @@ const reducer = (state: State, action: Action): State => {
 };
 
 export const Searchbar = () => {
-  const storeContext = useContext(store);
-  const c = storeContext.snippets;
-  const snippets = c.state || [];
-
-  const [isSearched, setIsSearched] = useState<boolean>(false);
+  let history = useHistory();
+  console.log(`location`, location);
+  const resetToHome = (q: string) => {
+    history.push(`/?q=${q}`);
+  };
 
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log('inside src/Searchbar/input.tsx');
 
-  const handleOnSearch = () => {
-    var credential = {
-      searchInput: state.searchInput,
-    };
-    var searchUrl = '/search/' + '?q=' + state.searchInput;
-    RestClient.get(searchUrl)
-      .then((response) => {
-        console.log(
-          'response from django search server: ' + JSON.stringify(response)
-        );
-        c.dispatch({ type: 'SET_SNIPPETS', payload: { snippets: response } });
-        dispatch({
-          type: 'submitSearchInputSuccess',
-          payload: 'Submitted!',
-        });
-        setIsSearched(true);
-      })
-      .catch(() => {
-        console.log('failed');
-        dispatch({
-          type: 'submitSearchInputFailed',
-          payload: 'Submission Failed.',
-        });
+  const handleOnSearch = async () => {
+    try {
+      resetToHome(state.searchInput);
+
+      dispatch({
+        type: 'submitSearchInputSuccess',
+        payload: 'Submitted!',
       });
+    } catch (error) {
+      dispatch({
+        type: 'submitSearchInputFailed',
+        payload: 'Submission Failed.',
+      });
+    }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.keyCode === 13 || event.which === 13) {
+    const enterKey = 13;
+    if (event.keyCode === enterKey || event.which === enterKey) {
       handleOnSearch();
     }
   };
 
-  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    dispatch({
-      type: 'submitSearchInput',
-      payload: event.target.value,
-    });
-  };
+  const handleSearchInputChange: React.ChangeEventHandler<HTMLInputElement> =
+    async (event) => {
+      const { value } = event.target;
+      console.log(`value`, value);
+      dispatch({
+        type: 'submitSearchInput',
+        payload: value,
+      });
+      // if (!value) {
+      //   setPageLoading(true);
+      //   // const snippets = await getSnippets();
+      //   setSnippets(snippets);
+      //   setPageLoading(false);
+      // }
+    };
 
   return (
     <div className={styles.container}>

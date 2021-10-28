@@ -72,7 +72,6 @@ type Action = { type: 'submitEmail', payload: string }
   | { type: 'submitAboutMe', payload: string }
   | { type: 'submitPainPoints', payload: string }
   | { type: 'submitReferralUrl', payload: string }
-  // | { type: 'submitJoinedDate', payload: Date }
   | { type: 'setIsButtonDisabled', payload: boolean }
   | { type: 'submitEmailSuccess', payload: string }
   | { type: 'submitEmailFailed', payload: string }
@@ -105,11 +104,6 @@ const reducer = (state: State, action: Action): State => {
         ...state,
         referralUrl: action.payload
       };
-    // case 'submitJoinedDate': 
-    //   return {
-    //     ...state,
-    //     joinedDate: action.payload
-    //   };
     case 'setIsButtonDisabled': 
       return {
         ...state,
@@ -251,7 +245,6 @@ export const Waitlist = () => {
               margin="normal"
               onChange={handleEmailChange}
               onKeyPress={handleKeyPress}
-              // helperText={state.helperText}
             />
             <TextField
               required
@@ -266,7 +259,6 @@ export const Waitlist = () => {
               margin="normal"
               onChange={handleUsernameChange}
               onKeyPress={handleKeyPress}
-              // helperText={state.helperText}
             />
             <TextField
             required
@@ -283,7 +275,6 @@ export const Waitlist = () => {
               margin="normal"
               onChange={handleAboutMeChange}
               onKeyPress={handleKeyPress}
-              // helperText={state.helperText}
             />
             <TextField
               required
@@ -297,7 +288,6 @@ export const Waitlist = () => {
               margin="normal"
               onChange={handleReferralUrlChange}
               onKeyPress={handleKeyPress}
-              // helperText={state.helperText}
             />
             <TextField
               fullWidth

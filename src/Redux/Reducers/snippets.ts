@@ -1,5 +1,3 @@
-import { Snippet } from '../../types';
-
 interface State {}
 
 export interface Context {
@@ -16,17 +14,11 @@ export interface Action {
   payload: any;
 }
 
-const initialContext = {
-  dispatch: () => {},
-  state: initialSnippetsState,
-};
-
 export const SnippetReducer = (
   state = initialSnippetsState,
   action: Action
 ) => {
-    console.log(action, "ACTION")
-    // const {payload = {}} = action;
+  console.log(action, 'ACTION');
   switch (action.type) {
     case 'SET_SNIPPETS':
       return {

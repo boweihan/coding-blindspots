@@ -16,8 +16,8 @@ import 'antd/es/button/style';
 import 'antd/es/modal/style';
 import Cookies from 'universal-cookie';
 import Login from '../View/login'
-import { useHistory } from "react-router-dom";
-
+import { CheckCircleTwoTone } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 
 const converter = new Showdown.Converter({
@@ -39,19 +39,14 @@ const Review = ({ location }: ReviewProps) => {
   const [loaded, setLoaded] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-
 const showModal = () => {
   setIsModalVisible(true);
 };
 
-let history = useHistory();
-const goToPreviousPath = () => {
-    history.go(-1)
-};
+
 
 const handleCancel = () => {
   setIsModalVisible(false);
-  goToPreviousPath()
 };
 
   const [snippet, setSnippet] = useState<Snippet>();
@@ -71,7 +66,6 @@ const handleCancel = () => {
           .catch(() => {
             setLoaded(true);
           });
-          // showModal();
   }, []);
 
   const createCommentWidgets = (cm: any) => {
@@ -105,9 +99,6 @@ const handleCancel = () => {
         })
         .catch(() => setCommenting(false));
     };
-    
-    
-    
     
     return (
       <div className={styles.widgetContainer}>
@@ -143,8 +134,6 @@ const handleCancel = () => {
     );
   };
   
-  
-
   const addInputLineWidget = (cm: any, event: any) => {
     removeInputWidgets(cm);
     const line = event.line;
@@ -153,6 +142,20 @@ const handleCancel = () => {
     widgets.push(cm.addLineWidget(line, div));
   };
 
+  const statusContainer =
+  !comments ||
+  (comments.length <= 0 ? (
+    <div className={styles.statusContainer}>
+      <Spin size="small" />
+      <span className={styles.loadingText}>pending review</span>
+    </div>
+  ) : (
+    <div className={styles.statusContainer}>
+      <CheckCircleTwoTone twoToneColor="#52c41a" />
+      <span className={styles.successText}>{comments.length} reviews completed</span>
+    </div>
+  ));
+
   if (!loaded) {
     return <PageLoad text="Loading Snippet…" />;
   }
@@ -160,7 +163,6 @@ const handleCancel = () => {
   if (!snippet) {
     return <NoSnippetFound />;
   }
-  
 
   const cookies = new Cookies();
   const userCookie = (cookies.get('user'));
@@ -168,6 +170,7 @@ const handleCancel = () => {
 
     return (
       <div className={styles.container}>
+        {statusContainer}
        <h2 className={styles.heading}>{snippet.title}</h2>
        <p>Click anywhere on the code and add your review/comments. </p>
        <div>
@@ -196,12 +199,12 @@ const handleCancel = () => {
        </div>
      </div>
    );
-  //   (
-  //  )
    }
+
  else{
    return (
      <div className={styles.container}>
+       {statusContainer}
       <h2 className={styles.heading}>{snippet.title}</h2>
       <p>Click anywhere on the code and add your review/comments. </p>
       <div>

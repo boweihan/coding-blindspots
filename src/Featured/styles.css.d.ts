@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'container': string;
+  'languagesCount': string;
   'snippet': string;
   'snippetContainer': string;
 }
