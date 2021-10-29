@@ -5,7 +5,11 @@ interface CssExports {
   'container': string;
   'editor': string;
   'heading': string;
+  'loadingText': string;
+  'modalContainer': string;
+  'statusContainer': string;
   'submit': string;
+  'successText': string;
   'widgetButtons': string;
   'widgetContainer': string;
 }

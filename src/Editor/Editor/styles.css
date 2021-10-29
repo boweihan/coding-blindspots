@@ -1,5 +1,16 @@
 .container {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
   height: 100%;
-  border-top: 1px solid #f2f2f2;
-  border-bottom: 1px solid #f2f2f2;
+  overflow: hidden;
+}
+
+/* adjust width of editor to 50% */
+:global ._3RpRzn6ol7oFMRMrWdw3Iu {
+    width: 50%;
+}
+
+/* set a break in between long words and continue on next line */
+:global .CodeMirror-linewidget {
+    overflow-wrap:break-word  
 }

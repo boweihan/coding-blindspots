@@ -3,7 +3,7 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import { Language } from '../';
 import style from './styles.css';
 import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
+import 'codemirror/theme/elegant.css';
 
 interface EditorProps {
   text: string;
@@ -15,6 +15,7 @@ interface EditorProps {
   setRef?: (ref: any) => void;
 }
 
+  console.log("inside src/Editor/Editor/index.tsx");
 const Editor = ({
   text,
   language,
@@ -35,6 +36,7 @@ const Editor = ({
         readOnly: !editable,
         mode: language,
         lineNumbers: true,
+        theme: 'elegant'
       }}
     />
   </div>

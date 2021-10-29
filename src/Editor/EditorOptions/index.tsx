@@ -1,7 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
 import 'antd/es/select/style';
-import styles from './styles.css';
 import { Language } from '../';
 const { Option } = Select;
 
@@ -12,7 +11,8 @@ interface Props {
 }
 
 const languageToText = {
-  clike: 'Java',
+  clike: 'C/C++ or other languages',
+  java: 'Java',
   python: 'Python',
   javascript: 'JavaScript',
   ruby: 'Ruby',
@@ -22,21 +22,20 @@ const languageToText = {
   php: 'PHP',
 };
 
+  console.log("inside src/Editor/EditorOptions/index.tsx");
 const EditorOptions = ({ language, setLanguage, enabled }: Props) => (
-  <div className={styles.container}>
-    <Select
-      defaultValue={language}
-      style={{ width: 120 }}
-      onChange={setLanguage}
-      disabled={!enabled}
-    >
-      {Object.values(Language).map((lang) => (
-        <Option key={lang} value={lang}>
-          {languageToText[lang]}
-        </Option>
-      ))}
-    </Select>
-  </div>
+  <Select
+    defaultValue={language}
+    style={{ width: '100%' }}
+    onChange={setLanguage}
+    disabled={!enabled}
+  >
+    {Object.values(Language).map((lang) => (
+      <Option key={lang} value={lang}>
+        {languageToText[lang]}
+      </Option>
+    ))}
+  </Select>
 );
 
 export default EditorOptions;

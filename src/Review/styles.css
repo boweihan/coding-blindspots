@@ -1,7 +1,13 @@
 .container {
   background: #fff;
-  margin: 24px;
-  padding: 24px;
+  padding: 48px;
+  min-height: 100vh;
+}
+
+.modalContainer {
+  margin-top: -14%;
+  margin-right: -7%;
+
 }
 
 .heading {
@@ -16,8 +22,8 @@
 
 .widgetContainer {
   padding: 6px;
-  border-top: 1px solid #f2f2f2;
-  border-bottom: 1px solid #f2f2f2;
+  border-top: 1px solid #fafafa;
+  border-bottom: 1px solid #fafafa;
   max-width: 80vw;
 }
 
@@ -33,4 +39,18 @@
 
 .editor {
   min-height: 70vh;
+}
+
+.statusContainer {
+  margin-bottom: 10px;
+}
+
+.loadingText {
+  color: #00a8e6;
+  margin-left: 8px;
+}
+
+.successText {
+  color: #52c41a;
+  margin-left: 8px;
 }

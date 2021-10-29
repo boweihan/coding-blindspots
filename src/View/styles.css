@@ -1,7 +1,7 @@
 .container {
   background: #fff;
-  margin: 24px;
-  padding: 24px;
+  min-height: 100vh;
+  padding: 48px;
 }
 
 .heading {
@@ -13,7 +13,6 @@
 }
 
 .statusContainer {
-  margin-bottom: 10px;
 }
 
 .loadingText {
@@ -26,6 +25,38 @@
   margin-left: 8px;
 }
 
+.tagContainer {
+
+}
+
+.editorContainer,
+.info {
+  padding-right: 24px;
+  width: 75%;
+}
+
 .editor {
   min-height: 70vh;
 }
+
+.CodeMirror-scroll {
+  overflow: hidden !important;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.tag {
+  background: #000000;
+  border-radius: 1em;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.5em;
+  padding: 0.2em 0.8em 0.1em;
+  margin-left: 0.5em;
+}
+

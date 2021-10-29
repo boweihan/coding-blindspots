@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchText {
+color: red;
+margin-right: 6px;
+}
+
+.searchBox {
+    margin-top: 8px;
+}
