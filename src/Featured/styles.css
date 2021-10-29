@@ -23,3 +23,22 @@
   display: flex;
   margin-bottom: 15px;
 }
+
+.languagesCount:hover {
+  cursor: pointer;
+}
+
+.badge {
+  transition: all 0.15s ease-in-out;
+  margin: 0 3px;
+}
+.badge:hover {
+  transform: scale(1.1);
+}
+
+.active {
+  background-color: #52c41a;
+}
+.inactive {
+  background-color: #ff4d4f;
+}
